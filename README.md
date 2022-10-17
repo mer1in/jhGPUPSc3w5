@@ -6,15 +6,15 @@ This is the week 5 project of the [Course 3 of 4 in the GPU Programming Speciali
 
 Video Stabilization Using Minimal difference of consequent frames
 
-## Dependencies
+## Dependencies / third party components
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule
+- video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with `for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done`
 
 ## Steps/lib calls to use
 1. substract two images
 1. summ all pixels in the diff image
 
-[source image](https://www.videezy.com/abstract/20766-people-walking-on-sidewalk-under-train-station)
 
 TODO:
 1. Read mp4, write mp4. Hello world: convert to grayscale
