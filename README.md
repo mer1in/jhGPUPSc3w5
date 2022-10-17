@@ -9,7 +9,7 @@ Video Stabilization Using Minimal difference of consequent frames
 ## Dependencies / third party components
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule
-- video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with `for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done`
+- video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 
 ## Steps/lib calls to use
 1. substract two images
