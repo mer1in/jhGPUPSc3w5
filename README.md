@@ -6,7 +6,7 @@ This is the week 5 project of the [Course 3 of 4 in the GPU Programming Speciali
 
 Video Stabilization Using Minimal difference of consequent frames
 
-## Quick run
+## Quick start
 
 `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
 
