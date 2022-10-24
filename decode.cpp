@@ -50,7 +50,7 @@ static void decode(AVCodecContext* dec_ctx, AVFrame* frame, AVPacket* pkt, const
     int ret;
     int sts;
 
-    fprintf(stderr, "decode start\n")
+    fprintf(stderr, "decode start\n");
     ret = avcodec_send_packet(dec_ctx, pkt);
     if (ret < 0)
     {
