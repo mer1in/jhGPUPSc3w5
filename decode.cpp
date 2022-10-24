@@ -1,4 +1,6 @@
 // stolen from https://stackoverflow.com/questions/71422496/how-to-save-avframe-as-image-in-c-using-ffmpeg
+// (git pull ; cat decode.cpp > ffmpeg/decode.cpp ; cd ffmpeg/ ; gcc decode.cpp -Llib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale -lpthread -lz -llzma -lm )
+//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
