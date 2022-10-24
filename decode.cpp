@@ -99,6 +99,7 @@ static void decode(AVCodecContext* dec_ctx, AVFrame* frame, AVPacket* pkt, const
         ret = avcodec_receive_frame(dec_ctx, frame);
         if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
         {
+            fprintf(stderr, "EAGAIN\n");
             return;
         }
         else if (ret < 0) 
@@ -113,7 +114,7 @@ static void decode(AVCodecContext* dec_ctx, AVFrame* frame, AVPacket* pkt, const
         /* the picture is allocated by the decoder. no need to
            free it */
         //snprintf(buf, sizeof(buf), "%s_%03d.pgm", filename, dec_ctx->frame_number);
-        //pgm_save(frame->data[0], frame->linesize[0],
+        // pgm_save(frame->data[0], frame->linesize[0],
         //    frame->width, frame->height, buf);
          
         //Convert from input format (e.g YUV420) to RGB and save to PPM:
