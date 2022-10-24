@@ -9,14 +9,18 @@ Video Stabilization Using Minimal difference of consequent frames
 ## Dependencies / third party components
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule
+  - `cd ffmpeg && ./configure --disable-x86asm --prefix=`pwd` && make && make install && make examples`
+  - make sure you can link proj with ffmpeg: ```gcc doc/examples/decode_video.c -Llib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale -lpthread -lz -llzma -lm```
 - video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 
 ## Steps/lib calls to use
 1. substract two images
 1. summ all pixels in the diff image
 
-
 TODO:
-1. Read mp4, write mp4. Hello world: convert to grayscale
-1. Open stream, calc array of shifts in a movie, get borders
-1. Reopen stream, transfer frames with corresponding shifts
+- [ ] ffmpeg
+  - [x] read mp4
+  - [ ] write mp4
+  - [ ] Hello world: convert to grayscale
+- [ ] Open stream, calc array of shifts in a movie, get borders
+- [ ] Reopen stream, transfer frames with corresponding shifts
