@@ -4,7 +4,8 @@ echo "Fetch submodules"
 git submodule update --init --recursive
 
 echo "Build ffmpeg"
-( cd ffmpeg && ./configure --disable-x86asm --prefix=`pwd` && make && make install && make examples )
+#( cd ffmpeg && ./configure --disable-x86asm --prefix=`pwd` && make && make install && make examples )
+( cd ffmpeg && ./configure --enable-static --enable-pic --enable-nonfree  --enable-gpl --disable-x86asm --prefix=`pwd` && make && make install && make examples )
 
 echo "Run decoding test"
 (
