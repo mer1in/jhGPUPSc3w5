@@ -10,4 +10,5 @@ gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -l
 
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade Pillow
+cd ..
 python3 ppm2png.py ./ffmpeg/out/fram.ppm
