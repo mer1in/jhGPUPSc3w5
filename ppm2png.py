@@ -5,5 +5,5 @@ from pathlib import Path
 
 inputFile = Path(sys.argv[1])
 print("Converting inputFile "+str(inputFile))
-Image.open(inputFile).save(inputFile.stem+'.png')
+Image.open(inputFile).save((inputFile.parent /  inputFile.stem)+'.png')
 
