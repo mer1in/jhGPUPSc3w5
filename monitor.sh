@@ -4,7 +4,7 @@ WHAT='./run.sh'
 
 while [[ true ]]
 do
-    git pull -r >/dev/null
+    git pull -r &>/dev/null
     chsum2=`find . -type d \( -path ./ffmpeg/out -o -path ./ffmpeg/my \) -prune -o \
         -type f ! -name "\.*\.sw*" -exec md5sum {} \;`
 #    chsum2=`find . -type f ! -name "\.*\.sw*" -exec md5sum {} \;`
