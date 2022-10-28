@@ -9,5 +9,6 @@ do
         chsum1=$chsum2
         (echo "$WHAT" | bash -)
     fi
+    echo -n .
     sleep 2
 done
