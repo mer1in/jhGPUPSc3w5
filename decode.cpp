@@ -161,7 +161,6 @@ int main(int argc, char** argv)
     filename = argv[1];
     outfilename = argv[2];
 
-    fprintf(stdout, "Decode is starting\n");
     pkt = av_packet_alloc();
     if (!pkt)
     {
