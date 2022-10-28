@@ -146,7 +146,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
             ret = output_video_frame(frame);
-            ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, frame->data);
+            ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
         }
 
         av_frame_unref(frame);
