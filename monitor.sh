@@ -8,6 +8,7 @@ do
     if [[ $chsum1 != $chsum2 ]]
     then
         chsum1=$chsum2
+        echo $WHAT
         (echo "$WHAT" | bash -)
     fi
     echo -n .
