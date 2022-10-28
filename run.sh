@@ -9,6 +9,6 @@ mkdir my
 #    && echo "decode compiled" && ./a.out ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
 
 cc decode.c -Llib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample \
-    -lswscale -lpthread -lz -llzma -lm -fpermissive -o my/decode \
+    -lswscale -lpthread -lz -llzma -lm -o my/decode \
     && echo "decode compiled" && ./my/decode ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
 
