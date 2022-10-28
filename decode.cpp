@@ -57,7 +57,6 @@ static enum AVPixelFormat pix_fmt;
 static AVStream *video_stream = NULL, *audio_stream = NULL;
 static const char *src_filename = NULL;
 static const char *video_dst_filename = NULL;
-static const char *audio_dst_filename = NULL;
 static FILE *video_dst_file = NULL;
 static FILE *audio_dst_file = NULL;
 
@@ -242,7 +241,7 @@ int main (int argc, char **argv)
 {
     int ret = 0;
 
-    if (argc != 4) {
+    if (argc != 3) {
         fprintf(stderr, "usage: %s  input_file video_output_file audio_output_file\n"
                 "API example program to show how to read frames from an input file.\n"
                 "This program reads frames from a file, decodes them, and writes decoded\n"
@@ -253,7 +252,6 @@ int main (int argc, char **argv)
     }
     src_filename = argv[1];
     video_dst_filename = argv[2];
-    audio_dst_filename = argv[3];
 
     /* open input file, and allocate format context */
     if (avformat_open_input(&fmt_ctx, src_filename, NULL, NULL) < 0) {
@@ -290,16 +288,6 @@ int main (int argc, char **argv)
         video_dst_bufsize = ret;
     }
 
-    if (open_codec_context(&audio_stream_idx, &audio_dec_ctx, fmt_ctx, AVMEDIA_TYPE_AUDIO) >= 0) {
-        audio_stream = fmt_ctx->streams[audio_stream_idx];
-        audio_dst_file = fopen(audio_dst_filename, "wb");
-        if (!audio_dst_file) {
-            fprintf(stderr, "Could not open destination file %s\n", audio_dst_filename);
-            ret = 1;
-            goto end;
-        }
-    }
-
     /* dump input information to stderr */
     av_dump_format(fmt_ctx, 0, src_filename, 0);
 
@@ -325,8 +313,6 @@ int main (int argc, char **argv)
 
     if (video_stream)
         printf("Demuxing video from file '%s' into '%s'\n", src_filename, video_dst_filename);
-    if (audio_stream)
-        printf("Demuxing audio from file '%s' into '%s'\n", src_filename, audio_dst_filename);
 
     /* read frames from the file */
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
@@ -374,10 +360,6 @@ int main (int argc, char **argv)
         if ((ret = get_format_from_sample_fmt(&fmt, sfmt)) < 0)
             goto end;
 
-        printf("Play the output audio file with the command:\n"
-               "ffplay -f %s -ac %d -ar %d %s\n",
-               fmt, n_channels, audio_dec_ctx->sample_rate,
-               audio_dst_filename);
     }
 
 end:
