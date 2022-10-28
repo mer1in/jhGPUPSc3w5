@@ -70,7 +70,7 @@ static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
 static int audio_frame_count = 0;
 
-/*
+
 static void ppm_save(unsigned char* buf, int wrap, int xsize, int ysize, char* filename)
 {
     FILE* f;
@@ -86,7 +86,7 @@ static void ppm_save(unsigned char* buf, int wrap, int xsize, int ysize, char* f
 
     fclose(f);
 }
-*/
+
 static int output_video_frame(AVFrame *frame)
 {
     if (frame->width != width || frame->height != height ||
@@ -146,7 +146,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
             ret = output_video_frame(frame);
-            //ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, frame->data);
+            ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, frame->data);
         }
 
         av_frame_unref(frame);
