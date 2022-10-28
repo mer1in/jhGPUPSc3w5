@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Monitor started"
 WHAT='./run.sh'
 
 while [[ true ]]
