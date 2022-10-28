@@ -122,7 +122,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
     if (ret < 0) {
-        fprintf(stderr, "Error submitting a packet for decoding (%s)\n", av_err2str(ret));
+        fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
         return ret;
     }
 
@@ -135,7 +135,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             if (ret == AVERROR_EOF || ret == AVERROR(EAGAIN))
                 return 0;
 
-            fprintf(stderr, "Error during decoding (%s)\n", av_err2str(ret));
+            fprintf(stderr, "Error during decoding (%i)\n", ret);
             return ret;
         }
 
