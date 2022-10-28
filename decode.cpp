@@ -29,6 +29,15 @@
  * @example demuxing_decoding.c
  */
 
+extern "C" {
+
+#include <libavutil/imgutils.h>
+#include <libavutil/samplefmt.h>
+#include <libavutil/timestamp.h>
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+
+}
 
 #pragma message "Hello"
 #ifdef av_err2str
@@ -41,15 +50,6 @@ av_always_inline std::string av_err2string(int errnum) {
 }
 #define av_err2str(err) av_err2string(err).c_str()
 #endif  // av_err2str
-
-extern "C" {
-
-#include <libavutil/imgutils.h>
-#include <libavutil/samplefmt.h>
-#include <libavutil/timestamp.h>
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-}
 static AVFormatContext *fmt_ctx = NULL;
 static AVCodecContext *video_dec_ctx = NULL, *audio_dec_ctx;
 static int width, height;
