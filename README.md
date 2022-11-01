@@ -4,7 +4,7 @@ This is the week 5 project of the [Course 3 of 4 in the GPU Programming Speciali
 
 ## Description
 
-Video Stabilization Using Minimal difference of consequent frames
+Blur faces in videostream
 
 ## Quick start
 
@@ -18,13 +18,14 @@ Video Stabilization Using Minimal difference of consequent frames
 - video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 
 ## Steps/lib calls to use
-1. substract two images
-1. summ all pixels in the diff image
+1. Blur
 
 TODO:
 - [ ] ffmpeg
   - [x] read mp4
-  - [ ] write mp4
-  - [ ] Hello world: convert to grayscale
-- [ ] Open stream, calc array of shifts in a movie, get borders
-- [ ] Reopen stream, transfer frames with corresponding shifts
+  - [ ] ~~write mp4~~
+  - [ ] ~~Hello world: convert to grayscale~~
+- [ ] build OpenCV
+- [ ] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
+- [ ] apply blur
+- [ ] write stream
