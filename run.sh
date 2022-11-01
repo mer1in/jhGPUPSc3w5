@@ -38,4 +38,4 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=${base_directory} ..
 make
 echo "--- Install openCV ---"
-sudo make install
+make install
