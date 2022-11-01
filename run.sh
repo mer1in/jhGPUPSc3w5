@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp decode.cpp ffmpeg/
+(
 cd ffmpeg
 [ -d out ] || mkdir out
 [ -d my ] || mkdir my
@@ -17,6 +18,7 @@ do
     python3 ../ppm2png.py out/$f
 done
 cp out/*.png ~/project/boxFilterNPP/out/
+)
 
 echo "--- Build openCV ---"
 base_directory=$(pwd)
