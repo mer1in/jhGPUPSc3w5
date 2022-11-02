@@ -123,6 +123,7 @@ static int output_video_frame(AVFrame *frame)
 static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 {
     int ret = 0;
+    char filename_buf[1024];
 
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
@@ -150,6 +151,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             ret = output_video_frame(frame);
             ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width, CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
+            snprintf(filename_buf, sizeof(filename_buf), "outframe_%03d.jpg", dec->frame_number);
+            cv::imwrite(filename_buf, img);
         }
 
         av_frame_unref(frame);
@@ -323,8 +326,6 @@ int main (int argc, char **argv)
         // skip it
         if (pkt->stream_index == video_stream_idx)
             ret = decode_packet(video_dec_ctx, pkt);
-        else if (pkt->stream_index == audio_stream_idx)
-            ret = decode_packet(audio_dec_ctx, pkt);
         av_packet_unref(pkt);
         if (ret < 0)
             break;
