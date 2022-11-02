@@ -9,7 +9,7 @@ cd ffmpeg
 [ -d out ] || mkdir out
 [ -d my ] || mkdir my
 gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -lswresample \
-    -lswscale -lpthread -L${BASE_DIR}/libraries/lib -lz -llzma -lm -fpermissive -Llib \
+    -lswscale -lpthread -L${BASE_DIR}/libraries/lib -lz -llzma -lm -fpermissive -lstdc++ -Llib \
     -L/usr/local/lib/ -D__STDC_CONSTANT_MACROS -o my/decode \
     -I${BASE_DIR}/libraries/include/opencv4 \
     && echo "decode compiled" && ./my/decode ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
