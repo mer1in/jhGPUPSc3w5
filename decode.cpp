@@ -29,6 +29,8 @@
  * @example demuxing_decoding.c
  */
 
+#include <opencv2/opencv.hpp> 
+
 extern "C" {
 
 #include <libavutil/imgutils.h>
@@ -147,6 +149,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         {
             ret = output_video_frame(frame);
             ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
+            // cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width, CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
         }
 
         av_frame_unref(frame);
