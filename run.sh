@@ -4,6 +4,7 @@ BASE_DIR=$(pwd)
 
 cp decode.cpp ffmpeg/
 (
+set -x
 cd ffmpeg
 [ -d out ] || mkdir out
 [ -d my ] || mkdir my
