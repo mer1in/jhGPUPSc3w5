@@ -15,7 +15,7 @@ gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -l
     -L${BASE_DIR}/libraries/lib \
     -L/usr/local/lib/ -D__STDC_CONSTANT_MACROS -o my/decode \
     -I${BASE_DIR}/libraries/include/opencv4 \
-    && echo "decode compiled" && LD_LIBRARY_PATH=${BASE_DIR}/libraries/lib ./my/decode ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
+    && echo "decode compiled" && ./my/decode ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
 
 #mkdir -p ~/project/boxFilterNPP/out
 #python3 -m pip install --upgrade pip
