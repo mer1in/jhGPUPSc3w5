@@ -38,5 +38,5 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DOPENCV_EXTRA_MODULES_PATH=${BASE_DIR}/opencv_contrib/modules \
       -DCMAKE_INSTALL_PREFIX=${BASE_DIR}/libraries ..
 
-make && make install
+make -j16 && make install
 )
