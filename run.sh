@@ -13,14 +13,14 @@ gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -l
     -I${BASE_DIR}/libraries \
     && echo "decode compiled" && ./my/decode ../video/P1033651.mp4 out/out || echo "Failed to compile decode"
 
-mkdir -p ~/project/boxFilterNPP/out
-python3 -m pip install --upgrade pip
-python3 -m pip install --upgrade Pillow
-
-for f in `ls out|grep ppm`
-do 
-    python3 ../ppm2png.py out/$f
-done
-cp out/*.png ~/project/boxFilterNPP/out/
+#mkdir -p ~/project/boxFilterNPP/out
+#python3 -m pip install --upgrade pip
+#python3 -m pip install --upgrade Pillow
+#
+#for f in `ls out|grep ppm`
+#do 
+#    python3 ../ppm2png.py out/$f
+#done
+#cp out/*.png ~/project/boxFilterNPP/out/
 )
 
