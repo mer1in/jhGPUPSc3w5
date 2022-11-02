@@ -151,7 +151,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             ret = output_video_frame(frame);
             ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
             cv::Mat img = cv::Mat(frame->height, frame->width, CV_8UC3, frame->data[0], frame->linesize[0]);
-            snprintf(filename_buf, sizeof(filename_buf), "outframe_%03d.jpg", dec->frame_number);
+            snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->frame_number);
             cv::imwrite(filename_buf, img);
         }
 
