@@ -10,7 +10,7 @@ cd ffmpeg
 [ -d my ] || mkdir my
 gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -lswresample \
     -lswscale -lpthread \
-    -lopencv_core -lopencv_imgcodecs \
+    -l:libopencv_core.so -l:libopencv_imgcodecs.so \
     -lz -llzma -lm -fpermissive -lstdc++ -Llib \
     -L${BASE_DIR}/libraries/lib \
     -L/usr/local/lib/ -D__STDC_CONSTANT_MACROS -o my/decode \
