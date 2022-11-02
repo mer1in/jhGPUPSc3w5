@@ -8,7 +8,7 @@ git submodule update --init --recursive
 echo "Build ffmpeg"
 (
 cd ffmpeg && ./configure --enable-static --enable-pic --enable-nonfree \
-    --enable-gpl --disable-x86asm --prefix=$BASE_DIR \
+    --enable-gpl --disable-x86asm --prefix=$BASE_DIR/libraries \
     && make && \
     make install && \
     make examples
