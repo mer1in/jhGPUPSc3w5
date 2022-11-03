@@ -93,9 +93,6 @@ FaceDetector::FaceDetector() :
          throw std::invalid_argument(ss.str());
      }
 
-
-
-
 static void ppm_save(unsigned char* buf, int wrap, int xsize, int ysize, char* filename)
 {
     FILE* f;
