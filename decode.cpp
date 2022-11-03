@@ -30,6 +30,7 @@
  */
 
 #include <opencv2/opencv.hpp> 
+#include <opencv2/dnn.hpp>
 
 extern "C" {
 
@@ -64,7 +65,7 @@ static FILE *video_dst_file = NULL;
 static FILE *audio_dst_file = NULL;
 
 static uint8_t *video_dst_data[4] = {NULL};
-static int      video_dst_linesize[4];
+static int video_dst_linesize[4];
 static int video_dst_bufsize;
 
 static int video_stream_idx = -1, audio_stream_idx = -1;
@@ -72,6 +73,26 @@ static AVFrame *frame = NULL;
 static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
 static int audio_frame_count = 0;
+
+FaceDetector::FaceDetector() :
+     confidence_threshold_(0.5),
+      input_image_height_(300),
+      input_image_width_(300),
+     scale_factor_(1.0),
+     mean_values_({104., 177.0, 123.0}) {
+         // Note: The variables MODEL_CONFIGURATION_FILE
+         // and MODEL_WEIGHTS_FILE are passed in via cmake
+         network_ = cv::dnn::readNetFromCaffe("assets/deploy.prototxt",
+                 "assets/res10_300x300_ssd_iter_140000_fp16.caffemodel");
+      if (network_.empty()) {
+         std::ostringstream ss;
+         ss << "Failed to load network with the following settings:\n"
+            << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
+            << "Binary: " + std::string(FACE_DETECTION_WEIGHTS) + "\n";
+         throw std::invalid_argument(ss.str());
+     }
+
+
 
 
 static void ppm_save(unsigned char* buf, int wrap, int xsize, int ysize, char* filename)
