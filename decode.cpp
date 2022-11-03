@@ -200,9 +200,6 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
 
-            auto rectangles = face_detector.detect_face_rectangles(frame);
-            printf("found %d faces\n", rectangles.size());
-
             ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
@@ -222,6 +219,10 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             } 
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
                 CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
+
+            auto rectangles = face_detector.detect_face_rectangles(img);
+            printf("found %d faces\n", rectangles.size());
+
             cv::imwrite(filename_buf, img);
 
         }
