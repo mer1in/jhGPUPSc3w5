@@ -3,6 +3,7 @@
 #include <string> 
 //#include <FaceDetector.h> 
 #include <opencv2/opencv.hpp>  
+#include <opencv2/dnn.hpp>
 
 #define FACE_DETECTION_CONFIGURATION "assets/deploy.prototxt"
 #define FACE_DETECTION_WEIGHTS "assets/res10_300x300_ssd_iter_140000_fp16.caffemodel"
