@@ -146,6 +146,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     char filename_buf[1024];
     struct SwsContext* sws_ctx = NULL;
 
+    FaceDetector face_detector;
+
     AVFrame* pBGRFrame = av_frame_alloc();
     pBGRFrame->format = AV_PIX_FMT_BGR24;
     pBGRFrame->width = dec->width;
