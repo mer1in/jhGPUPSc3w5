@@ -17,4 +17,5 @@ do
     fi
     echo -n .
     sleep 2
+    echo -n .
 done
