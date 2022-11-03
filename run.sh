@@ -2,7 +2,7 @@
 
 BASE_DIR=$(pwd)
 
-cp decode.cpp ffmpeg/
+cp decode.* ffmpeg/
 (
 set -x
 cd ffmpeg
