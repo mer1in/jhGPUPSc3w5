@@ -125,6 +125,16 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     int ret = 0;
     char filename_buf[1024];
 
+    AVFrame* pBGRFrame = av_frame_alloc();
+    pBGRFrame->format = AV_PIX_FMT_BGR24;
+    pBGRFrame->width = dec_ctx->width;
+    pBGRFrame->height = dec_ctx->height;
+    if (av_frame_get_buffer(pBGRFrame, 0) < 0)
+    {
+        printf("XXX av_frame_get_buffer < 0");
+        return;  //Error!
+    }
+
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
     if (ret < 0) {
