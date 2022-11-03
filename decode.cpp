@@ -133,7 +133,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     {
         printf("XXX av_frame_get_buffer < 0");
         return;  //Error!
-    }
+    }else
+        print("XXX av_frame_get_buffer is ok")
 
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
