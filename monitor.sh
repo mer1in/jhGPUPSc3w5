@@ -15,7 +15,7 @@ do
         echo $WHAT
         (echo "$WHAT" | bash -)
     fi
-    echo -n .
+    echo -n \
     sleep 2
-    echo -n .
+    echo -n /
 done
