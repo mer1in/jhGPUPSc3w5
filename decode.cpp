@@ -74,6 +74,12 @@ static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
 static int audio_frame_count = 0;
 
+
+class FaceDetector { 
+public:     
+explicit FaceDetector();
+    std::vector<cv::Rect> detect_face_rectangles(const cv::Mat &frame);
+}
 FaceDetector::FaceDetector() :
      confidence_threshold_(0.5),
       input_image_height_(300),
