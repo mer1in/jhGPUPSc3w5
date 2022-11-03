@@ -145,11 +145,11 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     }
 
 
-sws_ctx = sws_getContext(dec_ctx->width,
-                             dec_ctx->height,
-                             dec_ctx->pix_fmt,
-                             dec_ctx->width,
-                             dec_ctx->height,
+sws_ctx = sws_getContext(dec->width,
+                             dec->height,
+                             dec->pix_fmt,
+                             dec->width,
+                             dec->height,
                              AV_PIX_FMT_BGR24, //For OpenCV, we want BGR pixel format.
                              SWS_BICUBIC,
                              NULL,
@@ -181,7 +181,7 @@ sws_ctx = sws_getContext(dec_ctx->width,
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->frame_number);
             printf("Saving frame #%d to file %s\n", dec->frame_number, filename_buf);
             //ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
-           sts = sws_scale(ctx,                //struct SwsContext* c,
+           sts = sws_scale(sws_ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
                         frame->linesize,        //const int srcStride[],
                         0,                      //int srcSliceY, 
@@ -199,6 +199,7 @@ sws_ctx = sws_getContext(dec_ctx->width,
             cv::imwrite(filename_buf, img);
         }
 
+        sws_freeContext(sws_ctx);
         av_frame_unref(frame);
         if (ret < 0)
             return ret;
