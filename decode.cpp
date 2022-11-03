@@ -124,6 +124,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 {
     int ret = 0;
     char filename_buf[1024];
+    struct SwsContext* sws_ctx = NULL;
 
     AVFrame* pBGRFrame = av_frame_alloc();
     pBGRFrame->format = AV_PIX_FMT_BGR24;
@@ -141,6 +142,23 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     if (ret < 0) {
         fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
         return ret;
+    }
+
+
+sws_ctx = sws_getContext(dec_ctx->width,
+                             dec_ctx->height,
+                             dec_ctx->pix_fmt,
+                             dec_ctx->width,
+                             dec_ctx->height,
+                             AV_PIX_FMT_BGR24, //For OpenCV, we want BGR pixel format.
+                             SWS_BICUBIC,
+                             NULL,
+                             NULL,
+                             NULL);
+
+    if (sws_ctx == nullptr)
+    {
+        return;  //Error!
     }
 
     // get all the available frames from the decoder
@@ -163,7 +181,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->frame_number);
             printf("Saving frame #%d to file %s\n", dec->frame_number, filename_buf);
             //ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
-           sts = sws_scale(sws_ctx,                //struct SwsContext* c,
+           sts = sws_scale(ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
                         frame->linesize,        //const int srcStride[],
                         0,                      //int srcSliceY, 
