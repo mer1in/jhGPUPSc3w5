@@ -272,6 +272,13 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             auto rectangles = face_detector.detect_face_rectangles(img);
             printf("found %d faces\n", rectangles.size());
 
+
+        cv::Scalar color(0, 105, 205);
+         int frame_thickness = 4;
+         for(const auto & r : rectangles){
+             cv::rectangle(img, r, color, frame_thickness);
+         }
+
             cv::imwrite(filename_buf, img);
 
         }
