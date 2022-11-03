@@ -29,6 +29,8 @@
  * @example demuxing_decoding.c
  */
 
+#include "decode.hpp"
+
 #include <opencv2/opencv.hpp> 
 #include <opencv2/dnn.hpp>
 
