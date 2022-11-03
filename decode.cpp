@@ -176,7 +176,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             printf("XXX sws_scale err\n");
             return;  //Error!
         } 
-            cv::Mat img = cv::Mat(frame->height, frame->width, CV_8UC3, frame->data[0], frame->linesize[0]);
+            cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
+                CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
             cv::imwrite(filename_buf, img);
         }
 
