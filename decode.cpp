@@ -131,10 +131,10 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     pBGRFrame->height = dec->height;
     if (av_frame_get_buffer(pBGRFrame, 0) < 0)
     {
-        printf("XXX av_frame_get_buffer < 0");
+        printf("XXX av_frame_get_buffer < 0\n");
         return;  //Error!
     }else
-        printf("XXX av_frame_get_buffer is ok");
+        printf("XXX av_frame_get_buffer is ok\n");
 
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
@@ -163,6 +163,19 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->frame_number);
             printf("Saving frame #%d to file %s\n", dec->frame_number, filename_buf);
             //ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
+           sts = sws_scale(sws_ctx,                //struct SwsContext* c,
+                        frame->data,            //const uint8_t* const srcSlice[],
+                        frame->linesize,        //const int srcStride[],
+                        0,                      //int srcSliceY, 
+                        frame->height,          //int srcSliceH,
+                        pBGRFrame->data,        //uint8_t* const dst[], 
+                        pBGRFrame->linesize);   //const int dstStride[]);
+
+        if (sts != frame->height)
+        {
+            printf("XXX sws_scale err\n");
+            return;  //Error!
+        } 
             cv::Mat img = cv::Mat(frame->height, frame->width, CV_8UC3, frame->data[0], frame->linesize[0]);
             cv::imwrite(filename_buf, img);
         }
@@ -171,6 +184,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (ret < 0)
             return ret;
     }
+
+    
 
     return 0;
 }
