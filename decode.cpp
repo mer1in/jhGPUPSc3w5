@@ -32,7 +32,6 @@
 #include "decode.hpp"
 
 #include <opencv2/opencv.hpp> 
-#include <opencv2/dnn.hpp>
 
 extern "C" {
 
@@ -85,7 +84,7 @@ FaceDetector::FaceDetector() :
          // Note: The variables MODEL_CONFIGURATION_FILE
          // and MODEL_WEIGHTS_FILE are passed in via cmake
          network_ = cv::dnn::readNetFromCaffe(FACE_DETECTION_CONFIGURATION);
-      if (network_.empty(FACE_DETECTION_WEIGHTS)) {
+      if (network_.empty()) {
          std::ostringstream ss;
          ss << "Failed to load network with the following settings:\n"
             << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
