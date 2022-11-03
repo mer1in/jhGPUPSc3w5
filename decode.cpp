@@ -179,8 +179,8 @@ sws_ctx = sws_getContext(dec->width,
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
             ret = output_video_frame(frame);
-            snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->frame_number);
-            printf("Saving frame #%d to file %s\n", dec->frame_number, filename_buf);
+            snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%03d.jpg", dec->coded_picture_number);
+            printf("Saving frame #%d to file %s\n", dec->coded_picture_number, filename_buf);
             //ppm_save(frame->data[0], frame->linesize[0], frame->width, frame->height, "out/fram.ppm");
            int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
