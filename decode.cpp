@@ -152,7 +152,7 @@ sws_ctx = sws_getContext(dec->width,
                              dec->width,
                              dec->height,
                              AV_PIX_FMT_BGR24, //For OpenCV, we want BGR pixel format.
-                             SAV_WS_BICUBIC,
+                             SWS_BICUBIC,
                              NULL,
                              NULL,
                              NULL);
