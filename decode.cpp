@@ -127,8 +127,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
     AVFrame* pBGRFrame = av_frame_alloc();
     pBGRFrame->format = AV_PIX_FMT_BGR24;
-    pBGRFrame->width = dec_ctx->width;
-    pBGRFrame->height = dec_ctx->height;
+    pBGRFrame->width = dec->width;
+    pBGRFrame->height = dec->height;
     if (av_frame_get_buffer(pBGRFrame, 0) < 0)
     {
         printf("XXX av_frame_get_buffer < 0");
