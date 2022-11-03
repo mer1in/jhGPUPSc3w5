@@ -74,6 +74,8 @@ static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
 static int audio_frame_count = 0;
 
+#define FACE_DETECTION_CONFIGURATION "assets/deploy.prototxt"
+#define FACE_DETECTION_WEIGHTS "assets/res10_300x300_ssd_iter_140000_fp16.caffemodel"
 
 class FaceDetector { 
 public:     
@@ -102,9 +104,8 @@ FaceDetector::FaceDetector() :
      mean_values_({104., 177.0, 123.0}) {
          // Note: The variables MODEL_CONFIGURATION_FILE
          // and MODEL_WEIGHTS_FILE are passed in via cmake
-         network_ = cv::dnn::readNetFromCaffe("assets/deploy.prototxt",
-                 "assets/res10_300x300_ssd_iter_140000_fp16.caffemodel");
-      if (network_.empty()) {
+         network_ = cv::dnn::readNetFromCaffe(FACE_DETECTION_CONFIGURATION);
+      if (network_.empty(FACE_DETECTION_WEIGHTS)) {
          std::ostringstream ss;
          ss << "Failed to load network with the following settings:\n"
             << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
