@@ -4,8 +4,9 @@ WHAT='./run.sh'
 
 while [[ true ]]
 do
-    echo -n /
+    echo -n .
     git pull -r &>/dev/null
+    echo -n .
     chsum2=`find . -type d \( -path ./ffmpeg/out -o -path ./ffmpeg/my \) -prune -o \
         -type f ! -name "\.*\.sw*" -exec md5sum {} \;`
 #    chsum2=`find . -type f ! -name "\.*\.sw*" -exec md5sum {} \;`
@@ -16,6 +17,6 @@ do
         echo $WHAT
         (echo "$WHAT" | bash -)
     fi
-    echo -n \ 
+    echo -n .
     sleep 2
 done
