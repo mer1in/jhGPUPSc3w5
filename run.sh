@@ -3,6 +3,7 @@
 BASE_DIR=$(pwd)
 
 cp decode.* ffmpeg/
+cp -r assets ffmpeg/
 (
 set -x
 cd ffmpeg
