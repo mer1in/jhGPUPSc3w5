@@ -201,6 +201,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         {
 
             auto rectangles = face_detector.detect_face_rectangles(frame);
+            printf("found %d faces\n", rectangles.size());
 
             ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
