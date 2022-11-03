@@ -199,6 +199,9 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         // write the frame data to output file
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
+
+            auto rectangles = face_detector.detect_face_rectangles(frame);
+
             ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
