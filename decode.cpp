@@ -276,7 +276,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         cv::Scalar color(0, 105, 205);
          int frame_thickness = 4;
          for(const auto & r : rectangles){
-             ellipse(img, cv::fitEllipse([r.tl(), r.br()]), color, 2);
+             ellipse(img, cv::fitEllipse({r.tl(), r.br()}), color, 2);
              cv::rectangle(img, r, color, frame_thickness);
          }
 
