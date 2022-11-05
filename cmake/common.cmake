@@ -1,0 +1,7 @@
+function(add_sources)
+    foreach(type ${ARGN})
+        file(GLOB C_SOURCES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" ${type})
+        list(APPEND SOURCES ${C_SOURCES})
+        set(SOURCES ${SOURCES} PARENT_SCOPE)
+    endforeach()
+endfunction()
