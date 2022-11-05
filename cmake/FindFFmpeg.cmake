@@ -61,15 +61,6 @@ endmacro()
 #
 macro(find_component _component _pkgconfig _library _header)
 
-  if (NOT WIN32)
-     # use pkg-config to get the directories and then use these values
-     # in the FIND_PATH() and FIND_LIBRARY() calls
-     find_package(PkgConfig)
-     if (PKG_CONFIG_FOUND)
-       pkg_check_modules(PC_${_component} ${_pkgconfig})
-     endif ()
-  endif (NOT WIN32)
-
   find_path(${_component}_INCLUDE_DIRS ${_header}
     HINTS
       ${PC_${_component}_INCLUDEDIR}
