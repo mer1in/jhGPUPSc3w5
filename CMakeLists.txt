@@ -5,8 +5,8 @@ project($project})
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(Common)
-add_sources(*.cpp *.h)
-ADD_EXECUTABLE(${this_target} ${SOURCES})
+add_sources(*.cpp *.hpp)
+ADD_EXECUTABLE(${project} ${SOURCES})
 
 
 
