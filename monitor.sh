@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Monitor started"
-WHAT='./run.sh && cp -r out/* ~/project/out/'
+WHAT='./run.sh'
 
 while [[ true ]]
 do
