@@ -8,6 +8,8 @@
 #define FACE_DETECTION_CONFIGURATION "assets/deploy.prototxt"
 #define FACE_DETECTION_WEIGHTS "assets/res10_300x300_ssd_iter_140000_fp16.caffemodel"
 
+int handle_video(const char *src_filename, const char *video_dst_filename);
+
 class FaceDetector { 
 public:     
 explicit FaceDetector();
