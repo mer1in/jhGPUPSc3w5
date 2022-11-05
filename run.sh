@@ -4,7 +4,7 @@ PROJ=videoHideFaces
 
 (
 # XXX: debug
-rm -fr build ; rm -fr out
+rm -fr build ; rm -fr out ; rm videoHideFaces
 
 
 
