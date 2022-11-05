@@ -41,19 +41,17 @@ static AVFormatContext *fmt_ctx = NULL;
 static AVCodecContext *video_dec_ctx = NULL;
 static int width, height;
 static enum AVPixelFormat pix_fmt;
-static AVStream *video_stream = NULL, *audio_stream = NULL;
+static AVStream *video_stream = NULL;
 static FILE *video_dst_file = NULL;
-static FILE *audio_dst_file = NULL;
 
 static uint8_t *video_dst_data[4] = {NULL};
 static int video_dst_linesize[4];
 static int video_dst_bufsize;
 
-static int video_stream_idx = -1, audio_stream_idx = -1;
+static int video_stream_idx = -1;
 static AVFrame *frame = NULL;
 static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
-static int audio_frame_count = 0;
 
 FaceDetector::FaceDetector() :
      confidence_threshold_(0.5),
@@ -383,8 +381,8 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
     /* dump input information to stderr */
     av_dump_format(fmt_ctx, 0, src_filename, 0);
 
-    if (!audio_stream && !video_stream) {
-        fprintf(stderr, "Could not find audio or video stream in the input, aborting\n");
+    if (!video_stream) {
+        fprintf(stderr, "Could not find video stream in the input, aborting\n");
         ret = 1;
         goto end;
     }
@@ -435,8 +433,6 @@ end:
     avformat_close_input(&fmt_ctx);
     if (video_dst_file)
         fclose(video_dst_file);
-    if (audio_dst_file)
-        fclose(audio_dst_file);
     av_packet_free(&pkt);
     av_frame_free(&frame);
     av_free(video_dst_data[0]);
