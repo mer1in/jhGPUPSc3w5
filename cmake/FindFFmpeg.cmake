@@ -69,7 +69,7 @@ macro(find_component _component _pkgconfig _library _header)
     PATH_SUFFIXES
       ffmpeg
   )
-message(STATUS "find_path: _component = ${_component}_INCLUDE_DIRS")
+message(STATUS "find_path: _component = ${${_component}_INCLUDE_DIRS}")
 
   find_library(${_component}_LIBRARIES NAMES ${_library}
       HINTS
