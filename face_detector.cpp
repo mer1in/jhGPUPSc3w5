@@ -11,8 +11,8 @@ FaceDetector::FaceDetector() :
     if (network_.empty()) {
         std::ostringstream ss;
         ss << "Failed to load network with the following settings:\n"
-        << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
-        << "Binary: " + std::string(FACE_DETECTION_WEIGHTS) + "\n";
+            << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
+            << "Binary: " + std::string(FACE_DETECTION_WEIGHTS) + "\n";
         throw std::invalid_argument(ss.str());
     }
 }
