@@ -5,6 +5,7 @@ cd build
 cmake ..
 make
 
+ls -la 
 ./videoHideFaces video/F01.mp4 out/out
 
 exit
