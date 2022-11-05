@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.16)
 set(project VideoHideFaces)
 project($project})
 
-include(common)
+include(Common)
 add_sources(*.cpp *.h)
 ADD_EXECUTABLE(${this_target} ${SOURCES})
 
