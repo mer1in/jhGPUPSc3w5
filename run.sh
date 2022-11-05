@@ -3,7 +3,11 @@
 PROJ=videoHideFaces
 
 (
+# XXX: debug
 rm -fr build ; rm -fr out
+
+
+
 [ -d build ] || mkdir build
 cd build
 cmake ..
