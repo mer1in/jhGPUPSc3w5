@@ -10,6 +10,7 @@ add_sources(*.cpp *.hpp)
 ADD_EXECUTABLE(${project} ${SOURCES})
 
 set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib/cmake/opencv4/)
+set(FFmpeg_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/)
 find_package(OpenCV REQUIRED)
 find_package(FFmpeg REQUIRED)
 
@@ -23,7 +24,9 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib)
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
 add_definitions(-fpermissive)
-target_link_libraries(${project} avdevice avfilter avformat avcodec avutil postproc swresample swscale pthread opencv_core opencv_imgcodecs opencv_dnn opencv_imgproc z lzma)
+target_link_libraries(${project} avdevice avfilter avformat avcodec avutil postproc
+    swresample swscale pthread opencv_core opencv_imgcodecs opencv_dnn
+    opencv_imgproc z lzma)
 
 # tbd: nvpp
 #set(CUDAToolkit_ROOT "${CMAKE_BINARY_DIR}/extracted/cuda")
