@@ -25,7 +25,8 @@ TODO:
   - [x] read mp4
   - [ ] ~~write mp4~~
   - [ ] ~~Hello world: convert to grayscale~~
-- [ ] build OpenCV
-- [ ] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
+- [x] build OpenCV
+- [x] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
 - [ ] apply blur
+  - [ ] npp sandbox
 - [ ] write stream
