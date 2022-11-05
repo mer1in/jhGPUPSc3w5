@@ -1,12 +1,16 @@
 #!/bin/bash -ex
 
+PROJ=videoHideFaces
+
+(
 [ -d build ] || mkdir build
 cd build
 cmake ..
 make
 
-ls -la 
-./videoHideFaces video/F01.mp4 out/out
+mv $PROJ ..
+)
+./${PROJ} video/F01.mp4 out/out
 
 exit
 
