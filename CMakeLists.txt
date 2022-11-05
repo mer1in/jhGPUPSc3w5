@@ -7,6 +7,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(Common)
 add_sources(*.cpp *.hpp)
 ADD_EXECUTABLE(${project} ${SOURCES})
+
+set(OPENCV_ROOT ${SOURCES}/libraries/)
+find_package(OpenCV REQUIRED PATHS ${OPENCV_ROOT} NO_DEFAULT_PATH)
 target_include_directories(${project} PUBLIC ${OPENCV_INCLUDE_DIRS})
 
 
