@@ -5,7 +5,7 @@ cd build
 cmake ..
 make
 
-./decode video/F01.mp4 out/out
+./videoHideFaces video/F01.mp4 out/out
 
 exit
 
