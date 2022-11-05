@@ -10,6 +10,9 @@ ADD_EXECUTABLE(${project} ${SOURCES})
 
 set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib/cmake/opencv4/)
 find_package(OpenCV REQUIRED PATHS ${OPENCV_ROOT} NO_DEFAULT_PATH)
+
+#debug
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${project} PUBLIC ${OPENCV_INCLUDE_DIRS})
 
 
