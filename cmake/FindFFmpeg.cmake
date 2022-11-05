@@ -66,6 +66,7 @@ macro(find_component _component _pkgconfig _library _header)
     HINTS
       ${PC_${_component}_INCLUDEDIR}
       ${PC_${_component}_INCLUDE_DIRS}
+      ${FFmpeg_DIR}/include/${_component}
     PATH_SUFFIXES
       ffmpeg
     NO_DEFAULT_PATH
