@@ -71,7 +71,7 @@ macro(find_component _component _pkgconfig _library _header)
       ffmpeg
     NO_DEFAULT_PATH
   )
-message(STATUS "find_path_hint: ${_header} = ${FFmpeg_DIR}/include/${_component} )
+message(STATUS "find_path_hint: ${_header} = ${FFmpeg_DIR}/include/${_component} ")
 message(STATUS "find_path: ${_component} = ${${_component}_INCLUDE_DIRS}")
 
   find_library(${_component}_LIBRARIES NAMES ${_library}
