@@ -14,7 +14,7 @@ find_package(OpenCV REQUIRED PATHS ${OPENCV_ROOT} NO_DEFAULT_PATH)
 #debug
 message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib)/
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib)
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
 add_definitions(-fpermissive)
