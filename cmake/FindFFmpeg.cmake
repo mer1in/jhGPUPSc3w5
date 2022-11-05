@@ -61,6 +61,7 @@ endmacro()
 #
 macro(find_component _component _pkgconfig _library _header)
 
+  message(STATUS "find_component : _component = ${_component}")
   find_path(${_component}_INCLUDE_DIRS ${_header}
     HINTS
       ${PC_${_component}_INCLUDEDIR}
