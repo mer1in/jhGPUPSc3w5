@@ -225,9 +225,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                              NULL);
 
     if (sws_ctx == nullptr)
-    {
         return;  //Error!
-    }
 
     // get all the available frames from the decoder
     while (ret >= 0) {
@@ -269,13 +267,12 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             auto rectangles = face_detector.detect_face_rectangles(img);
             printf("found %d faces\n", rectangles.size());
 
+            cv::Scalar color(0, 105, 205);
+            int frame_thickness = 4;
+            for(const auto & r : rectangles){
+                cv::rectangle(img, r, color, frame_thickness);
+            }
 
-        cv::Scalar color(0, 105, 205);
-         int frame_thickness = 4;
-         for(const auto & r : rectangles){
-             //ellipse(img, cv::fitEllipse({r.tl(), r.br()}), color, 2);
-             cv::rectangle(img, r, color, frame_thickness);
-         }
 
             cv::imwrite(filename_buf, img);
 
