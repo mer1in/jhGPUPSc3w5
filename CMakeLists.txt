@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 3.16)
 set(project VideoHideFaces)
 project($project})
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(Common)
 add_sources(*.cpp *.h)
 ADD_EXECUTABLE(${this_target} ${SOURCES})
