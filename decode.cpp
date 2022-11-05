@@ -38,7 +38,7 @@ extern "C" {
 }
 
 static AVFormatContext *fmt_ctx = NULL;
-static AVCodecContext *video_dec_ctx = NULL, *audio_dec_ctx;
+static AVCodecContext *video_dec_ctx = NULL;
 static int width, height;
 static enum AVPixelFormat pix_fmt;
 static AVStream *video_stream = NULL, *audio_stream = NULL;
@@ -420,8 +420,6 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
     /* flush the decoders */
     if (video_dec_ctx)
         decode_packet(video_dec_ctx, NULL);
-    if (audio_dec_ctx)
-        decode_packet(audio_dec_ctx, NULL);
 
     printf("Demuxing succeeded.\n");
 
@@ -434,7 +432,6 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
 
 end:
     avcodec_free_context(&video_dec_ctx);
-    avcodec_free_context(&audio_dec_ctx);
     avformat_close_input(&fmt_ctx);
     if (video_dst_file)
         fclose(video_dst_file);
