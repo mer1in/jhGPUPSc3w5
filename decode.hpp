@@ -3,7 +3,6 @@
 #include <string> 
 //#include <FaceDetector.h> 
 #include <opencv2/opencv.hpp>  
-#include <opencv2/dnn.hpp>
 
 #include "face_detector.hpp"
 
