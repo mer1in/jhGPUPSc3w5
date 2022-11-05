@@ -1,20 +1,14 @@
 class FaceDetector { 
-public:     
-explicit FaceDetector();
-    std::vector<cv::Rect> detect_face_rectangles(const cv::Mat &frame);
-private:     
-/// Face detection network     
-cv::dnn::Net network_;     
-/// Input image width     
-const int input_image_width_;     
-/// Input image height     
-const int input_image_height_;     
-/// Scale factor when creating image blob     
-const double scale_factor_;     
-/// Mean normalization values network was trained with     
-const cv::Scalar mean_values_;     
-/// Face detection confidence threshold     
-const float confidence_threshold_;  
+    public:     
+        explicit FaceDetector();
+        std::vector<cv::Rect> detect_face_rectangles(const cv::Mat &frame);
+    private:     
+        cv::dnn::Net network_;     
+        const int input_image_width_;     
+        const int input_image_height_;     
+        const double scale_factor_;     
+        const cv::Scalar mean_values_;     
+        const float confidence_threshold_;  
 };
 
 #define FACE_DETECTION_CONFIGURATION "assets/deploy.prototxt"
