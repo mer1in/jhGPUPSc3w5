@@ -12,7 +12,7 @@ mv $PROJ ..
 )
 
 [ -d out ] || mkdir out
-./${PROJ} video/F01.mp4 out/out.mp4
+./${PROJ} video/F02.mp4 out/out.mp4
 
 cp -r out/* ~/project/out/
 
