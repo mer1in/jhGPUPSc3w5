@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/bin/bash -ex
+
+[ -d build ] || mkdir build
+cd build
+cmake ..
+make
+
+./decode video/F01.mp4 out/out
+
+exit
 
 BASE_DIR=$(pwd)
 
@@ -20,14 +29,5 @@ gcc decode.cpp -lavdevice -lavfilter -lavformat -lavcodec -lavutil -lpostproc -l
     && LD_LIBRARY_PATH=${BASE_DIR}/libraries/lib ./my/decode ../video/F01.mp4 out/out \
     || echo "Failed to compile decode"
 
-#mkdir -p ~/project/boxFilterNPP/out
-#python3 -m pip install --upgrade pip
-#python3 -m pip install --upgrade Pillow
-#
-#for f in `ls out|grep ppm`
-#do 
-#    python3 ../ppm2png.py out/$f
-#done
-#cp out/*.png ~/project/boxFilterNPP/out/
 )
 
