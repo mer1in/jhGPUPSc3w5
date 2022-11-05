@@ -10,7 +10,7 @@ add_sources(*.cpp *.hpp)
 ADD_EXECUTABLE(${project} ${SOURCES})
 
 set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib/cmake/opencv4/)
-find_package(OpenCV REQUIRED PATHS ${OPENCV_ROOT} NO_DEFAULT_PATH)
+find_package(OpenCV REQUIRED)
 find_package(FFmpeg REQUIRED)
 
 #debug
