@@ -76,8 +76,7 @@ message(STATUS "find_path: ${_component} = ${${_component}_INCLUDE_DIRS}")
 
   find_library(${_component}_LIBRARIES NAMES ${_library}
       HINTS
-      ${PC_${_component}_LIBDIR}
-      ${PC_${_component}_LIBRARY_DIRS}
+      ${FFmpeg_DIR}/lib
   )
 
   set(${_component}_DEFINITIONS  ${PC_${_component}_CFLAGS_OTHER} CACHE STRING "The ${_component} CFLAGS.")
