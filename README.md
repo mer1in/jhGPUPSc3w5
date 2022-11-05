@@ -29,4 +29,5 @@ TODO:
 - [x] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
 - [ ] apply blur
   - [ ] npp sandbox
+    - [ ] install npp
 - [ ] write stream
