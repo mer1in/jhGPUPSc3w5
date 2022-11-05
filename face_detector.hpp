@@ -1,3 +1,4 @@
+#include <vector> 
 class FaceDetector { 
     public:     
         explicit FaceDetector();
