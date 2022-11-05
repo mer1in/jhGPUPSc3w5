@@ -432,26 +432,6 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
                video_dst_filename);
     }
 
-    if (audio_stream) {
-        enum AVSampleFormat sfmt = audio_dec_ctx->sample_fmt;
-//        int n_channels = audio_dec_ctx->ch_layout.nb_channels;
-        int n_channels = 1;//audio_dec_ctx->channel_layout.nb_channels;
-        const char *fmt;
-
-        if (av_sample_fmt_is_planar(sfmt)) {
-            const char *packed = av_get_sample_fmt_name(sfmt);
-            printf("Warning: the sample format the decoder produced is planar "
-                   "(%s). This example will output the first channel only.\n",
-                   packed ? packed : "?");
-            sfmt = av_get_packed_sample_fmt(sfmt);
-            n_channels = 1;
-        }
-
-        if ((ret = get_format_from_sample_fmt(&fmt, sfmt)) < 0)
-            goto end;
-
-    }
-
 end:
     avcodec_free_context(&video_dec_ctx);
     avcodec_free_context(&audio_dec_ctx);
