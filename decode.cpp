@@ -20,15 +20,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * @file
- * Demuxing and decoding example.
- *
- * Show how to use the libavformat and libavcodec API to demux and
- * decode audio and video data.
- * @example demuxing_decoding.c
- */
-
 #include "decode.hpp"
 
 #include <opencv2/opencv.hpp> 
@@ -46,7 +37,6 @@ extern "C" {
 
 }
 
-#pragma message "Hello"
 #ifdef av_err2str
 #undef av_err2str
 #pragma message "redefine av_err2str"
