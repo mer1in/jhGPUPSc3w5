@@ -1,4 +1,5 @@
 function(add_sources)
+    message (STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
     foreach(type ${ARGN})
         file(GLOB C_SOURCES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" ${type})
         list(APPEND SOURCES ${C_SOURCES})
