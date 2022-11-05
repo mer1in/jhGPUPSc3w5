@@ -213,16 +213,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     }
 
 
-    sws_ctx = sws_getContext(dec->width,
-                             dec->height,
-                             dec->pix_fmt,
-                             dec->width,
-                             dec->height,
-                             AV_PIX_FMT_BGR24, //For OpenCV, we want BGR pixel format.
-                             SWS_BICUBIC,
-                             NULL,
-                             NULL,
-                             NULL);
+    sws_ctx = sws_getContext(dec->width, dec->height, dec->pix_fmt, dec->width,
+         dec->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
     if (sws_ctx == nullptr)
         return;  //Error!
