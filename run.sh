@@ -10,6 +10,8 @@ make
 
 mv $PROJ ..
 )
+
+[ -d out ] || mkdir out
 ./${PROJ} video/F01.mp4 out/out
 
 exit
