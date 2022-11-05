@@ -1,4 +1,6 @@
 #include <vector> 
+#include <opencv2/dnn.hpp>
+
 class FaceDetector { 
     public:     
         explicit FaceDetector();
