@@ -115,28 +115,6 @@ std::vector<cv::Rect> faces;
     return faces;
 }
 
-/*bool printfNPPinfo()
-{
-  const NppLibraryVersion *libVer = nppGetLibVersion();
-
-  printf("NPP Library Version %d.%d.%d\n", libVer->major, libVer->minor,
-         libVer->build);
-
-  int driverVersion, runtimeVersion;
-  cudaDriverGetVersion(&driverVersion);
-  cudaRuntimeGetVersion(&runtimeVersion);
-
-  printf("  CUDA Driver  Version: %d.%d\n", driverVersion / 1000,
-         (driverVersion % 100) / 10);
-  printf("  CUDA Runtime Version: %d.%d\n", runtimeVersion / 1000,
-         (runtimeVersion % 100) / 10);
-
-  // Min spec is SM 1.0 devices
-  bool bVal = checkCudaCapabilities(1, 0);
-  return bVal;
-}
-*/
-
 static int output_video_frame(AVFrame *frame)
 {
     if (frame->width != width || frame->height != height ||
