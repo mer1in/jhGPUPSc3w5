@@ -62,8 +62,6 @@ static AVCodecContext *video_dec_ctx = NULL, *audio_dec_ctx;
 static int width, height;
 static enum AVPixelFormat pix_fmt;
 static AVStream *video_stream = NULL, *audio_stream = NULL;
-static const char *src_filename = NULL;
-static const char *video_dst_filename = NULL;
 static FILE *video_dst_file = NULL;
 static FILE *audio_dst_file = NULL;
 
@@ -383,21 +381,9 @@ static int get_format_from_sample_fmt(const char **fmt,
     return -1;
 }
 
-int main (int argc, char **argv)
+int handle_video(const char *src_filename, const char *video_dst_filename)
 {
     int ret = 0;
-
-    if (argc != 3) {
-        fprintf(stderr, "usage: %s  input_file video_output_file audio_output_file\n"
-                "API example program to show how to read frames from an input file.\n"
-                "This program reads frames from a file, decodes them, and writes decoded\n"
-                "video frames to a rawvideo file named video_output_file, and decoded\n"
-                "audio frames to a rawaudio file named audio_output_file.\n",
-                argv[0]);
-        exit(1);
-    }
-    src_filename = argv[1];
-    video_dst_filename = argv[2];
 
     /* open input file, and allocate format context */
     if (avformat_open_input(&fmt_ctx, src_filename, NULL, NULL) < 0) {
