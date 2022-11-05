@@ -78,7 +78,7 @@ message(STATUS "find_path: ${_component} = ${${_component}_INCLUDE_DIRS}")
       HINTS
       ${FFmpeg_DIR}/lib
   )
-message(STATUS "find_lib: ${_component} = ${${_component}_LIBRARIES}")
+message(STATUS "find_lib: ${_component}_LIBRARIES = ${${_component}_LIBRARIES}")
 
   set(${_component}_DEFINITIONS  ${PC_${_component}_CFLAGS_OTHER} CACHE STRING "The ${_component} CFLAGS.")
   set(${_component}_VERSION      ${PC_${_component}_VERSION}      CACHE STRING "The ${_component} version number.")
