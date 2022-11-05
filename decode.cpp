@@ -33,7 +33,7 @@
 
 #include <opencv2/opencv.hpp> 
 
-#include <npp.h>
+//#include <npp.h>
 
 extern "C" {
 
@@ -144,7 +144,7 @@ std::vector<cv::Rect> faces;
     return faces;
 }
 
-bool printfNPPinfo()
+/*bool printfNPPinfo()
 {
   const NppLibraryVersion *libVer = nppGetLibVersion();
 
@@ -164,7 +164,7 @@ bool printfNPPinfo()
   bool bVal = checkCudaCapabilities(1, 0);
   return bVal;
 }
-
+*/
 
 static int output_video_frame(AVFrame *frame)
 {
