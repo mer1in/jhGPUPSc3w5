@@ -15,7 +15,7 @@ find_package(OpenCV REQUIRED PATHS ${OPENCV_ROOT} NO_DEFAULT_PATH)
 message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
-
+add_definitions(-fpermissive)
 
 
 # tbd: nvpp
