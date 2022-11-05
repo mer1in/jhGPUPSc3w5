@@ -33,6 +33,8 @@
 
 #include <opencv2/opencv.hpp> 
 
+#include <npp.h>
+
 extern "C" {
 
 #include <libavutil/imgutils.h>
@@ -142,21 +144,27 @@ std::vector<cv::Rect> faces;
     return faces;
 }
 
-static void ppm_save(unsigned char* buf, int wrap, int xsize, int ysize, char* filename)
+bool printfNPPinfo()
 {
-    FILE* f;
-    int i;
+  const NppLibraryVersion *libVer = nppGetLibVersion();
 
-    f = fopen(filename, "wb");
-    fprintf(f, "P6\n%d %d\n%d\n", xsize, ysize, 255);
+  printf("NPP Library Version %d.%d.%d\n", libVer->major, libVer->minor,
+         libVer->build);
 
-    for (i = 0; i < ysize; i++)
-    {
-        fwrite(buf + i * wrap, 1, xsize*3, f);
-    }
+  int driverVersion, runtimeVersion;
+  cudaDriverGetVersion(&driverVersion);
+  cudaRuntimeGetVersion(&runtimeVersion);
 
-    fclose(f);
+  printf("  CUDA Driver  Version: %d.%d\n", driverVersion / 1000,
+         (driverVersion % 100) / 10);
+  printf("  CUDA Runtime Version: %d.%d\n", runtimeVersion / 1000,
+         (runtimeVersion % 100) / 10);
+
+  // Min spec is SM 1.0 devices
+  bool bVal = checkCudaCapabilities(1, 0);
+  return bVal;
 }
+
 
 static int output_video_frame(AVFrame *frame)
 {
