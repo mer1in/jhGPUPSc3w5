@@ -96,23 +96,18 @@ FaceDetector::FaceDetector() :
 std::vector<cv::Rect> FaceDetector::detect_face_rectangles(const cv::Mat &frame) {
 
     int failc = 1;
-    printf("XXX: %d\n", failc++);
      cv::Mat input_blob = cv::dnn::blobFromImage(frame,
              scale_factor_,
              cv::Size(input_image_width_, input_image_height_),
              mean_values_,
              false,
              false);
-    printf("XXX: %d\n", failc++);
 network_.setInput(input_blob, "data");
-    printf("XXX: %d\n", failc++);
      cv::Mat detection = network_.forward("detection_out");
-    printf("XXX: %d\n", failc++);
      cv::Mat detection_matrix(detection.size[2],
              detection.size[3],
              CV_32F,
              detection.ptr<float>());
-    printf("XXX: %d\n", failc++);
 std::vector<cv::Rect> faces;
 
     for (int i = 0; i < detection_matrix.rows; i++) {
@@ -208,11 +203,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     pBGRFrame->width = dec->width;
     pBGRFrame->height = dec->height;
     if (av_frame_get_buffer(pBGRFrame, 0) < 0)
-    {
-        printf("XXX av_frame_get_buffer < 0\n");
         return;  //Error!
-    }else
-        printf("XXX av_frame_get_buffer is ok\n");
 
     // submit the packet to the decoder
     ret = avcodec_send_packet(dec, pkt);
