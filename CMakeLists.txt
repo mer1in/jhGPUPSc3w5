@@ -16,7 +16,7 @@ message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
 add_definitions(-fpermissive)
-
+target_link_libraries(avdevice avfilter avformat avcodec avutil postproc swresample swscale pthread opencv_core opencv_imgcodecs opencv_dnn opencv_imgproc z lzma)
 
 # tbd: nvpp
 #set(CUDAToolkit_ROOT "${CMAKE_BINARY_DIR}/extracted/cuda")
