@@ -25,8 +25,11 @@ message(STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
 add_definitions(-fpermissive)
-target_link_libraries(${project} avdevice avfilter avformat avcodec avutil postproc
-    swresample swscale pthread opencv_core opencv_imgcodecs opencv_dnn
+ 
+target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
+    ${AVFORMAT_LIBRARIES} ${AVCODEC_LIBRARIES} ${AVUTIL_LIBRARIES}
+    ${POSTPROC_LIBRARIES} ${SWRESAMPLE_LIBRARIES} ${SWSCALE_LIBRARIES}
+    pthread opencv_core opencv_imgcodecs opencv_dnn
     opencv_imgproc z lzma)
 
 # tbd: nvpp
