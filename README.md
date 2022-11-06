@@ -10,6 +10,10 @@ Blur faces in videostream
 
 `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
 
+## Prerequisites
+
+- [npp](https://developer.nvidia.com/npp)
+
 ## Dependencies / third party components
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule
