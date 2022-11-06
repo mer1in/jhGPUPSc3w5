@@ -22,7 +22,7 @@ Blur faces in videostream
 - video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 
 ## Steps/lib calls to use
-1. Blur
+1. Blur = gauss filter
 
 TODO:
 - [ ] ffmpeg
