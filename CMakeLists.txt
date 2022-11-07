@@ -15,8 +15,6 @@ find_package(OpenCV REQUIRED)
 find_package(FFmpeg REQUIRED)
 find_package(CUDA REQUIRED)
 
-
-
 #debug
 message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "FFMPEG_INCLUDE_DIRS = ${FFMPEG_INCLUDE_DIRS}")
@@ -31,6 +29,7 @@ add_definitions(-fpermissive)
 target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
     ${AVFORMAT_LIBRARIES} ${AVCODEC_LIBRARIES} ${AVUTIL_LIBRARIES}
     ${POSTPROC_LIBRARIES} ${SWRESAMPLE_LIBRARIES} ${SWSCALE_LIBRARIES}
+    ${CUDA_CUDA_LIBRARY} ${CUDA_cudart_LIBRARY}
     cudart cuda
     pthread opencv_core opencv_imgcodecs opencv_dnn
     opencv_imgproc z lzma)
