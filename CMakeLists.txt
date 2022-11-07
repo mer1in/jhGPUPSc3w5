@@ -30,7 +30,6 @@ target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
     ${AVFORMAT_LIBRARIES} ${AVCODEC_LIBRARIES} ${AVUTIL_LIBRARIES}
     ${POSTPROC_LIBRARIES} ${SWRESAMPLE_LIBRARIES} ${SWSCALE_LIBRARIES}
     ${CUDA_CUDA_LIBRARY} ${CUDA_cudart_LIBRARY}
-    cudart cuda
     pthread opencv_core opencv_imgcodecs opencv_dnn
     opencv_imgproc z lzma)
 
