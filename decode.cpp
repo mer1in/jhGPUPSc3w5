@@ -88,6 +88,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 {
     int ret = 0;
 
+    size_t size = 3 * dec->width * dec->height;
+
     //debug
     char filename_buf[1024];
 
@@ -114,7 +116,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
     Npp8u *dev_mem = NULL;
 
-    cudaError_t err = cudaMalloc(&dev_mem, 3 * dec->width * dec->height);
+    cudaError_t err = cudaMalloc(&dev_mem, size);
     if (err != cudaSuccess)
     {
         fprintf(stderr, "Failed to allocate device vector memory (error code %s)!\n", cudaGetErrorString(err));
@@ -157,6 +159,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                 printf("XXX sws_scale err\n");
                 return;  //Error!
             } 
+            cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyHostToDevice);
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
                 CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
 
