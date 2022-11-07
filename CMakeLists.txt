@@ -25,9 +25,6 @@ target_include_directories(${project} PUBLIC ${CUDA_INCLUDE_DIRS})
 
 message(STATUS "CUDA_CUDA_LIBRARY = ${CUDA_CUDA_LIBRARY}")
 message(STATUS "CUDA_LIBRARIES = ${CUDA_LIBRARIES}")
-message(STATUS "CUDA_npp_LIBRARY = ${CUDA_npp_LIBRARY}")
-
-
 
 add_definitions(-fpermissive)
  
