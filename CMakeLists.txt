@@ -22,7 +22,7 @@ message(STATUS "FFMPEG_INCLUDE_DIRS = ${FFMPEG_INCLUDE_DIRS}")
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib)
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
-target_include_directories(${project} PUBLIC "/usr/local/cuda-11.3/targets/x86_64-linux/include/")
+target_include_directories(${project} PUBLIC ${CUDA_INCLUDE_DIRS})
 
 add_definitions(-fpermissive)
  
