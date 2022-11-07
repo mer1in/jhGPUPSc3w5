@@ -181,6 +181,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
                 NppiSize isize = {r.width, r.height};
                 Npp8u *face_addr = dev_mem + (r.tl().y * r.width * 3 + r.tl().x * 3);
+                printf("face_addr x = %d y = %d\n", r.tl().x, r.tl().y);
                 nppiFilterGauss_8u_C3R(face_addr, pBGRFrame->width*3, face_addr, pBGRFrame->width*3, isize, NPP_MASK_SIZE_9_X_9);
 
             }
