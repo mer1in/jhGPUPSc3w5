@@ -179,7 +179,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                     exit(EXIT_FAILURE);
                 }
 
-                nppiFilterGauss_8u_C3R();
+                nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width, dev_mem, pBGRFrame->width, r, NPP_MASK_SIZE_3_X_3);
 
                 cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyDeviceToHost);
                 if (err != cudaSuccess)
