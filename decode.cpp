@@ -87,7 +87,10 @@ static int output_video_frame(AVFrame *frame)
 static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 {
     int ret = 0;
+
+    //debug
     char filename_buf[1024];
+
     struct SwsContext* sws_ctx = NULL;
 
     FaceDetector face_detector;
@@ -105,7 +108,6 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
         return ret;
     }
-
 
     sws_ctx = sws_getContext(dec->width, dec->height, dec->pix_fmt, dec->width,
          dec->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
