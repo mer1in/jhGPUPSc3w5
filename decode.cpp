@@ -112,6 +112,15 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     sws_ctx = sws_getContext(dec->width, dec->height, dec->pix_fmt, dec->width,
          dec->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
+    Npp8u *dev_mem = NULL;
+
+    cudaError_t err = cudaMalloc(&dev_mem, 3 * dec->width * dec->height);
+    if (err != cudaSuccess)
+    {
+        fprintf(stderr, "Failed to allocate device vector memory (error code %s)!\n", cudaGetErrorString(err));
+        exit(EXIT_FAILURE);
+    }
+
     if (sws_ctx == nullptr)
         return;  //Error!
 
@@ -160,7 +169,6 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             for(const auto & r : rectangles){
                 cv::rectangle(img, r, color, frame_thickness);
             }
-
 
             cv::imwrite(filename_buf, img);
 
