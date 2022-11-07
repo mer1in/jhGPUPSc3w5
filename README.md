@@ -12,14 +12,15 @@ Blur faces in videostream
 
 ## Prerequisites
 
-- [npp](https://developer.nvidia.com/npp)
+- [npp](https://developer.nvidia.com/npp) - if you're using computer provided by course platform then this dependency is already installed
 
-## Dependencies / third party components
+## Dependencies / third party components / RTFMs
 
-- [ffmpeg](https://www.ffmpeg.org/) included as submodule
-  - `cd ffmpeg && ./configure --disable-x86asm --prefix=`pwd` && make && make install && make examples`
-  - make sure you can link proj with ffmpeg: ```gcc doc/examples/decode_video.c -Llib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale -lpthread -lz -llzma -lm```
-- video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
+- [ffmpeg](https://www.ffmpeg.org/) included as submodule, this dependency is built by `init.sh` script
+- video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with\
+ ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
+- [npp documentation](https://docs.nvidia.com/cuda/npp/index.html)
+- [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
 
 ## Steps/lib calls to use
 1. Blur = gauss filter
@@ -36,3 +37,4 @@ TODO:
   - [x] npp sandbox
     - [ ] ~~install npp~~
 - [ ] write stream
+- [ ] documentation
