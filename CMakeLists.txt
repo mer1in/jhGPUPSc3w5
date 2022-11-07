@@ -24,6 +24,10 @@ message(STATUS "CMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_include_directories(${project} PUBLIC ${CUDA_INCLUDE_DIRS})
 
+message(STATUS "CUDA_CUDA_LIBRARY = ${CUDA_CUDA_LIBRARY}")
+message(STATUS "CUDA_cudart_LIBRARY = ${CUDA_cudart_LIBRARY}")
+
+
 add_definitions(-fpermissive)
  
 target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
