@@ -181,7 +181,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
                 nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width, dev_mem, pBGRFrame->width, r, NPP_MASK_SIZE_3_X_3);
 
-                cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyDeviceToHost);
+                err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyDeviceToHost);
                 if (err != cudaSuccess)
                 {
                     fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
