@@ -13,6 +13,7 @@ set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib/cmake/opencv4/)
 set(FFmpeg_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/)
 find_package(OpenCV REQUIRED)
 find_package(FFmpeg REQUIRED)
+find_package(CUDA REQUIRED)
 
 
 
