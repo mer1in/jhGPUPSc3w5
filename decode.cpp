@@ -169,25 +169,26 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
             cv::Scalar color(0, 105, 205);
             int frame_thickness = 4;
+
+            cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyHostToDevice);
+            if (err != cudaSuccess)
+            {
+                fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
+                exit(EXIT_FAILURE);
+            }
+
             for(const auto & r : rectangles){
                 cv::rectangle(img, r, color, frame_thickness);
 
-                cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyHostToDevice);
-                if (err != cudaSuccess)
-                {
-                    fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
-                    exit(EXIT_FAILURE);
-                }
-
                 nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width, dev_mem, pBGRFrame->width, r, NPP_MASK_SIZE_3_X_3);
 
-                err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyDeviceToHost);
-                if (err != cudaSuccess)
-                {
-                    fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
-                    exit(EXIT_FAILURE);
-                }
+            }
 
+            err = cudaMemcpy(pBGRFrame->data[0], dev_mem, size, cudaMemcpyDeviceToHost);
+            if (err != cudaSuccess)
+            {
+                fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
+                exit(EXIT_FAILURE);
             }
 
             cv::imwrite(filename_buf, img);
