@@ -25,7 +25,7 @@ target_include_directories(${project} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_include_directories(${project} PUBLIC ${CUDA_INCLUDE_DIRS})
 
 message(STATUS "CUDA_CUDA_LIBRARY = ${CUDA_CUDA_LIBRARY}")
-message(STATUS "CUDA_cudart_static_LIBRARY = ${CUDA_cudart_static_LIBRARY}")
+message(STATUS "CUDA_LIBRARIES = ${CUDA_LIBRARIES}")
 
 
 add_definitions(-fpermissive)
@@ -33,7 +33,7 @@ add_definitions(-fpermissive)
 target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
     ${AVFORMAT_LIBRARIES} ${AVCODEC_LIBRARIES} ${AVUTIL_LIBRARIES}
     ${POSTPROC_LIBRARIES} ${SWRESAMPLE_LIBRARIES} ${SWSCALE_LIBRARIES}
-    ${CUDA_CUDA_LIBRARY} ${CUDA_cudart_LIBRARY}
+    ${CUDA_CUDA_LIBRARY} ${CUDA_LIBRARIES}
     pthread opencv_core opencv_imgcodecs opencv_dnn
     opencv_imgproc z lzma)
 
