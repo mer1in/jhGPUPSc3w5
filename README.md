@@ -31,8 +31,8 @@ TODO:
   - [ ] ~~Hello world: convert to grayscale~~
 - [x] build OpenCV
 - [x] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
-- [ ] use cmake
-- [ ] apply blur
-  - [ ] npp sandbox
-    - [ ] install npp
+- [x] use cmake
+- [x] apply blur
+  - [x] npp sandbox
+    - [ ] ~~install npp~~
 - [ ] write stream
