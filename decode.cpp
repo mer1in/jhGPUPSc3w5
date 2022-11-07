@@ -162,7 +162,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             cudaError_t err = cudaMemcpy(dev_mem, pBGRFrame->data[0], size, cudaMemcpyHostToDevice);
             if (err != cudaSuccess)
             {
-                fprintf(stderr, "Failed to copy vector data from host to device (error code %s)!\n", cudaGetErrorString(err));
+                fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
                 exit(EXIT_FAILURE);
             }
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
