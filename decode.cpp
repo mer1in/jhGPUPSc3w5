@@ -200,15 +200,13 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
         }
 
-        cudaFree(dev_mem);
         sws_freeContext(sws_ctx);
         av_frame_unref(frame);
-        if (ret < 0)
-            return ret;
     }
+    cudaFree(dev_mem);
 
-    
-
+    if (ret < 0)
+        return ret;
     return 0;
 }
 
