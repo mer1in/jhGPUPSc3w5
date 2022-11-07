@@ -180,7 +180,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             for(const auto & r : rectangles){
 
                 NppiSize isize = {r.width, r.height};
-                nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width, dev_mem, pBGRFrame->width, isize, NPP_MASK_SIZE_9_X_9);
+                nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width*3, dev_mem, pBGRFrame->width*3, isize, NPP_MASK_SIZE_9_X_9);
 
             }
 
