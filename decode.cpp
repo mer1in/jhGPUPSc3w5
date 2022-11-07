@@ -180,6 +180,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             for(const auto & r : rectangles){
                 cv::rectangle(img, r, color, frame_thickness);
 
+                NppiSize isize = {r->width, r->height};
                 nppiFilterGauss_8u_C3R(dev_mem, pBGRFrame->width, dev_mem, pBGRFrame->width, r, NPP_MASK_SIZE_3_X_3);
 
             }
