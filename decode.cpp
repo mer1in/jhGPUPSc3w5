@@ -264,6 +264,7 @@ static int open_codec_context(int *stream_idx,
 int handle_video(const char *src_filename, const char *video_dst_filename)
 {
     int ret = 0;
+    VideoWriter writer;
 
     /* open input file, and allocate format context */
     if (avformat_open_input(&fmt_ctx, src_filename, NULL, NULL) < 0) {
