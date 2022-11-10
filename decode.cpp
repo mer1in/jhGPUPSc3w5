@@ -114,6 +114,9 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     sws_ctx = sws_getContext(dec->width, dec->height, dec->pix_fmt, dec->width,
          dec->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
+    sws_ctx_rev = sws_getContext(dec->width, dec->height, AV_PIX_FMT_BGR24, dec->width,
+         dec->height, dec->pix_fmt, SWS_BICUBIC, NULL, NULL, NULL);
+
     Npp8u *dev_mem = NULL;
 
     cudaError_t err = cudaMalloc(&dev_mem, size);
@@ -123,7 +126,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         exit(EXIT_FAILURE);
     }
 
-    if (sws_ctx == nullptr)
+    if (sws_ctx == nullptr || sws_ctx_rev == nullptr)
         return;  //Error!
 
     // get all the available frames from the decoder
@@ -146,7 +149,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
-           int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
+            int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
                         frame->linesize,        //const int srcStride[],
                         0,                      //int srcSliceY, 
@@ -189,7 +192,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             err = cudaMemcpy(pBGRFrame->data[0], dev_mem, size, cudaMemcpyDeviceToHost);
             if (err != cudaSuccess)
             {
-                fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
+                fprintf(stderr, "Failed to copy video frame from device to host (error code %s)!\n", cudaGetErrorString(err));
                 exit(EXIT_FAILURE);
             }
 
