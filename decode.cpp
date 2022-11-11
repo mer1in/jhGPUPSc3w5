@@ -94,6 +94,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     char filename_buf[1024];
 
     struct SwsContext* sws_ctx = NULL;
+    struct SwsContext* sws_ctx_rev = NULL;
 
     FaceDetector face_detector;
 
