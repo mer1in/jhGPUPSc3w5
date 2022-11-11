@@ -150,6 +150,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
+
             int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
                         frame->linesize,        //const int srcStride[],
@@ -201,6 +202,15 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 //                cv::rectangle(img, r, color, frame_thickness);
 
             cv::imwrite(filename_buf, img);
+
+
+            int sts = sws_scale(sws_ctx_rev,                //struct SwsContext* c,
+                        pBGRFrame->data,            //const uint8_t* const srcSlice[],
+                        pBGRFrame->linesize,        //const int srcStride[],
+                        0,                      //int srcSliceY, 
+                        frame->height,          //int srcSliceH,
+                        frame->data,        //uint8_t* const dst[], 
+                        frame->linesize);   //const int dstStride[]);
 
         }
 
