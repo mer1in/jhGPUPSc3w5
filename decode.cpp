@@ -204,7 +204,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             cv::imwrite(filename_buf, img);
 
 
-            int sts = sws_scale(sws_ctx_rev,                //struct SwsContext* c,
+            sts = sws_scale(sws_ctx_rev,                //struct SwsContext* c,
                         pBGRFrame->data,            //const uint8_t* const srcSlice[],
                         pBGRFrame->linesize,        //const int srcStride[],
                         0,                      //int srcSliceY, 
