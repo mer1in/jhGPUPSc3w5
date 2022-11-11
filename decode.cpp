@@ -147,7 +147,6 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
 
-            ret = output_video_frame(frame);
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
 
@@ -211,6 +210,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->height,          //int srcSliceH,
                         frame->data,        //uint8_t* const dst[], 
                         frame->linesize);   //const int dstStride[]);
+
+            ret = output_video_frame(frame);
 
         }
 
