@@ -353,8 +353,8 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
     }
 
     /* flush the decoders */
-    if (video_dec_ctx)
-        decode_packet(video_dec_ctx, NULL);
+//    if (video_dec_ctx)
+//        decode_packet(video_dec_ctx, NULL);
 
     printf("Demuxing succeeded.\n");
 
