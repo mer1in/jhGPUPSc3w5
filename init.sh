@@ -19,7 +19,7 @@ PKG_CONFIG_PATH="$BASE_DIR/libraries//lib/pkgconfig" \
 
 echo "Build ffmpeg"
 (
-PKG_CONFIG_PATH="$BASE_DIR/libraries//lib/pkgconfig" \
+export PKG_CONFIG_PATH="$BASE_DIR/libraries//lib/pkgconfig"
 cd ffmpeg && \
     ./configure --enable-static --enable-shared --enable-pic --enable-nonfree \
         --enable-libx264 --enable-gpl  --disable-x86asm \
