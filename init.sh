@@ -25,7 +25,8 @@ cd ffmpeg && \
         --enable-libx264 --enable-gpl  --disable-x86asm \
         --prefix=$BASE_DIR/libraries && \
     make && \
-    make install
+    make install && \
+    make examples
 )
 
 echo "--- Build openCV ---"
