@@ -11,7 +11,7 @@ cd x264
 PATH="$BASE_DIR/libraries/bin:$PATH" \
 PKG_CONFIG_PATH="$BASE_DIR/libraries//lib/pkgconfig" \
     ./configure --prefix="$BASE_DIR/libraries" \
-        --bindir="$BASE_DIR/libraries" --enable-static --enable-pic \
+        --bindir="$BASE_DIR/libraries/bin" --enable-static --enable-pic \
         --disable-asm && \
     PATH="$BASE_DIR/libraries/bin:$PATH" make && \
     make install
