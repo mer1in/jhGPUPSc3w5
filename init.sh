@@ -5,13 +5,17 @@ BASE_DIR=$(pwd)
 echo "Fetch submodules"
 git submodule update --init --recursive
 
+
+# PATH="$HOME/bin:$PATH" ./configure --prefix="`pwd`/../ffmpeg/" --bindir="`pwd`/../ffmpeg/bin" --enable-static --enable-pic --disable-asm && PATH="$HOME/bin:$PATH" make && make install
 echo "Build ffmpeg"
 (
+
+#  cd ffmpeg && ./configure --enable-static --enable-pic --enable-nonfree \ --enable-shared --enable-libx264 --enable-libx265 
+
 cd ffmpeg && ./configure --enable-static --enable-pic --enable-nonfree \
     --enable-gpl --disable-x86asm --prefix=$BASE_DIR/libraries \
     && make && \
-    make install && \
-    make examples
+    make install
 )
 
 echo "Run decoding test"
