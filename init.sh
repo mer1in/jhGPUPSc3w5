@@ -21,7 +21,7 @@ echo "Build ffmpeg"
 (
 export PKG_CONFIG_PATH="$BASE_DIR/libraries//lib/pkgconfig"
 cd ffmpeg && \
-    ./configure --enable-static --enable-shared --enable-pic --enable-nonfree \
+    ./configure --enable-static --enable-pic --enable-nonfree \
         --enable-libx264 --enable-gpl  --disable-x86asm \
         --prefix=$BASE_DIR/libraries && \
     make && \
