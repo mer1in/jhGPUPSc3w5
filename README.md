@@ -26,9 +26,10 @@ Blur faces in videostream
 1. Blur = gauss filter
 
 TODO:
-- [ ] ffmpeg
+- [x] ffmpeg
   - [x] read mp4
-  - [ ] ~~write mp4~~
+  - [x] write mp4
+    - [x] install libx264
   - [ ] ~~Hello world: convert to grayscale~~
 - [x] build OpenCV
 - [x] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
@@ -37,4 +38,6 @@ TODO:
   - [x] npp sandbox
     - [ ] ~~install npp~~
 - [ ] write stream
+  - [ ] make it work with global vars
+  - [ ] rewrite with classes
 - [ ] documentation
