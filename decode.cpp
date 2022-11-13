@@ -319,15 +319,21 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         exit(1);
     }
 
+    /* find the mpeg1video encoder */
+    const AVCodec *codec = avcodec_find_encoder_by_name("libx264");
+    if (!codec) {
+        fprintf(stderr, "Codec libx264 not found\n");
+        exit(1);
+    }
+
+    AVCodecContext *c = avcodec_alloc_context3(codec);
+    if (!c) {
+        fprintf(stderr, "Could not allocate video codec context\n");
+        exit(1);
+    }
+
     if (open_codec_context(&video_stream_idx, &video_dec_ctx, fmt_ctx, AVMEDIA_TYPE_VIDEO) >= 0) {
         video_stream = fmt_ctx->streams[video_stream_idx];
-
-        video_dst_file = fopen(video_dst_filename, "wb");
-        if (!video_dst_file) {
-            fprintf(stderr, "Could not open destination file %s\n", video_dst_filename);
-            ret = 1;
-            goto end;
-        }
 
         /* allocate image where the decoded image will be put */
         width = video_dec_ctx->width;
@@ -340,6 +346,34 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
             goto end;
         }
         video_dst_bufsize = ret;
+
+        //////// open output context
+        c->bit_rate = video_dec_ctx->bit_rate;
+        c->width = video_dec_ctx->width;
+        c->height = video_dec_ctx->height;
+        /* frames per second */
+        c->time_base = video_dec_ctx->time_base;
+        c->framerate = video_dec_ctx->framerate;
+        c->gop_size = video_dec_ctx->gop_size;
+        c->max_b_frames = video_dec_ctx->max_b_frames;
+        c->pix_fmt = AV_PIX_FMT_YUV420P;
+
+        if (codec->id == AV_CODEC_ID_H264)
+            av_opt_set(c->priv_data, "preset", "slow", 0);
+
+        /* open it */
+        ret = avcodec_open2(c, codec, NULL);
+        if (ret < 0) {
+            fprintf(stderr, "Could not open codec: %s\n", av_err2str(ret));
+            exit(1);
+        }
+
+        video_dst_file = fopen(video_dst_filename, "wb");
+        if (!video_dst_file) {
+            fprintf(stderr, "Could not open %s\n", video_dst_filename);
+            exit(1);
+        }
+
     }
 
     /* dump input information to stderr */
