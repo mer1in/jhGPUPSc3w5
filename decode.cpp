@@ -53,6 +53,7 @@ static int video_stream_idx = -1;
 static AVFrame *frame = NULL;
 static AVPacket *pkt = NULL;
 static int video_frame_count = 0;
+AVCodecContext *c = NULL;
 
 static void encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt,
                    FILE *outfile)
@@ -182,7 +183,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->linesize,        //const int srcStride[],
                         0,                      //int srcSliceY, 
                         frame->height,          //int srcSliceH,
-                        pBGRFrame->data,        //uint8_t* const dst[], 
+                            pBGRFrame->data,        //uint8_t* const dst[], 
                         pBGRFrame->linesize);   //const int dstStride[]);
 
             if (sts != frame->height)
@@ -224,11 +225,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                 exit(EXIT_FAILURE);
             }
 
-//            for(const auto & r : rectangles)
-//                cv::rectangle(img, r, color, frame_thickness);
-
             cv::imwrite(filename_buf, img);
-
 
             sts = sws_scale(sws_ctx_rev,                //struct SwsContext* c,
                         pBGRFrame->data,            //const uint8_t* const srcSlice[],
@@ -238,7 +235,10 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->data,        //uint8_t* const dst[], 
                         frame->linesize);   //const int dstStride[]);
 
-            ret = output_video_frame(frame);
+            ret = encode(c, frame, pkt, video_dst_file);
+            /*
+            encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt, FILE *outfile)
+             */ 
 
         }
 
@@ -327,7 +327,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         exit(1);
     }
 
-    AVCodecContext *c = avcodec_alloc_context3(codec);
+    c = avcodec_alloc_context3(codec);
     if (!c) {
         fprintf(stderr, "Could not allocate video codec context\n");
         exit(1);
