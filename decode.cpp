@@ -28,6 +28,7 @@
 
 extern "C" {
 
+#include <libavutil/opt.h>
 #include <libavutil/imgutils.h>
 #include <libavutil/samplefmt.h>
 #include <libavutil/timestamp.h>
