@@ -52,6 +52,7 @@ static int video_dst_bufsize;
 static int video_stream_idx = -1;
 static AVFrame *frame = NULL;
 static AVPacket *pkt = NULL;
+static AVPacket *pkt_enc = NULL;
 static int video_frame_count = 0;
 AVCodecContext *c = NULL;
 
@@ -235,7 +236,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->data,        //uint8_t* const dst[], 
                         frame->linesize);   //const int dstStride[]);
 
-            encode(c, frame, pkt, video_dst_file);
+            encode(c, frame, pkt_enc, video_dst_file);
             /*
             encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt, FILE *outfile)
              */ 
@@ -394,7 +395,8 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
     }
 
     pkt = av_packet_alloc();
-    if (!pkt) {
+    pkt_enc = av_packet_alloc();
+    if (!pkt || !pkt_enc) {
         fprintf(stderr, "Could not allocate packet\n");
         ret = AVERROR(ENOMEM);
         goto end;
