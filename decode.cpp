@@ -365,7 +365,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         /* open it */
         ret = avcodec_open2(c, codec, NULL);
         if (ret < 0) {
-            fprintf(stderr, "Could not open codec: %s\n", av_err2str(ret));
+            fprintf(stderr, "Could not open codec: \n");
             exit(1);
         }
 
