@@ -236,7 +236,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->data,        //uint8_t* const dst[], 
                         frame->linesize);   //const int dstStride[]);
 
-            encode(c, frame, pkt_enc, video_dst_file);
+            encode(c, pBGRFrame, pkt_enc, video_dst_file);
             /*
             encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt, FILE *outfile)
              */ 
