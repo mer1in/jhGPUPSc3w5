@@ -327,7 +327,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         //c->gop_size = video_dec_ctx->gop_size;
         c->max_b_frames = video_dec_ctx->max_b_frames;
 //        c->pix_fmt = AV_PIX_FMT_YUV420P;
-        c->pix_fmt = AV_PIX_FMT_YUV422P10LE;
+        c->pix_fmt = AV_PIX_FMT_YUV422P;
 
         if (codec->id == AV_CODEC_ID_H264)
             av_opt_set(c->priv_data, "preset", "slow", 0);
