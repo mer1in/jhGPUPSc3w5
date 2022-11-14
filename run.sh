@@ -14,7 +14,10 @@ mv $PROJ ..
 )
 
 [ -d out ] || mkdir out
-./${PROJ} video/F01.mp4 out/out.mp4
+for file_name in F01 F02
+do
+    ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4
+done
 
 cp -r out/* ~/project/out/
 cp out/out.mp4 ~/coursera/
