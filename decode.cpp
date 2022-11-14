@@ -114,7 +114,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
          dec->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
     sws_ctx_rev = sws_getContext(dec->width, dec->height, AV_PIX_FMT_BGR24, dec->width,
-         dec->height, dec->pix_fmt, SWS_BICUBIC, NULL, NULL, NULL);
+         dec->height, AV_PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
 
     Npp8u *dev_mem = NULL;
 
@@ -145,25 +145,21 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
 
-            encode(c, frame, pkt_enc, video_dst_file);
+            //encode(c, frame, pkt_enc, video_dst_file);
 
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
 
             int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
-                        frame->data,            //const uint8_t* const srcSlice[],
-                        frame->linesize,        //const int srcStride[],
-                        0,                      //int srcSliceY, 
-                        frame->height,          //int srcSliceH,
-                            pBGRFrame->data,        //uint8_t* const dst[], 
-                        pBGRFrame->linesize);   //const int dstStride[]);
+                frame->data,            //const uint8_t* const srcSlice[],
+                frame->linesize,        //const int srcStride[],
+                0,                      //int srcSliceY, 
+                frame->height,          //int srcSliceH,
+                pBGRFrame->data,        //uint8_t* const dst[], 
+                pBGRFrame->linesize);   //const int dstStride[]);
 
             if (sts != frame->height)
-            {
-                printf("XXX sws_scale err\n");
                 return;  //Error!
-            } 
-
 
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
                 CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
@@ -207,7 +203,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->data,        //uint8_t* const dst[], 
                         frame->linesize);   //const int dstStride[]);
 
-            //encode(c, pBGRFrame, pkt_enc, video_dst_file);
+            encode(c, pBGRFrame, pkt_enc, video_dst_file);
 
         }
 
@@ -326,8 +322,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         c->framerate = video_dec_ctx->framerate;
         //c->gop_size = video_dec_ctx->gop_size;
         c->max_b_frames = video_dec_ctx->max_b_frames;
-//        c->pix_fmt = AV_PIX_FMT_YUV420P;
-        c->pix_fmt = AV_PIX_FMT_YUV422P;
+        c->pix_fmt = AV_PIX_FMT_YUV420P;
 
         if (codec->id == AV_CODEC_ID_H264)
             av_opt_set(c->priv_data, "preset", "slow", 0);
