@@ -17,6 +17,8 @@ mv $PROJ ..
 ./${PROJ} video/F02.mp4 out/out.mp4
 
 cp -r out/* ~/project/out/
+cp out/out.mp4 ~/coursera/
+ls -l ~/coursera/
 
 exit
 
