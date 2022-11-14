@@ -259,7 +259,7 @@ static int open_codec_context(int *stream_idx, AVCodecContext **dec_ctx,
         /* Init the decoders */
         if ((ret = avcodec_open2(*dec_ctx, dec, NULL)) < 0) {
             fprintf(stderr, "Failed to open %s codec\n",
-                    av_get_media_type_string(type));
+                av_get_media_type_string(type));
             return ret;
         }
         *stream_idx = stream_index;
