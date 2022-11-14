@@ -322,7 +322,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         c->width = video_dec_ctx->width;
         c->height = video_dec_ctx->height;
         /* frames per second */
-        c->time_base = video_dec_ctx->timebase;
+        c->time_base = video_dec_ctx->time_base;
         c->framerate = video_dec_ctx->framerate;
         c->gop_size = video_dec_ctx->gop_size;
         c->max_b_frames = video_dec_ctx->max_b_frames;
