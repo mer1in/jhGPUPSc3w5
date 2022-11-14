@@ -186,14 +186,12 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
             }
 
-            /*
             err = cudaMemcpy(pBGRFrame->data[0], dev_mem, size, cudaMemcpyDeviceToHost);
             if (err != cudaSuccess)
             {
                 fprintf(stderr, "Failed to copy video frame from device to host (error code %s)!\n", cudaGetErrorString(err));
                 exit(EXIT_FAILURE);
             }
-            */
 
             for(const auto & r : rectangles)
                 cv::rectangle(img, r, color, frame_thickness);
