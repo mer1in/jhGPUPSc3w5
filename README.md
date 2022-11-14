@@ -17,6 +17,7 @@ Blur faces in videostream
 ## Dependencies / third party components / RTFMs
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule, this dependency is built by `init.sh` script
+  - [hints in building ffmpeg](https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu)
 - video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with\
  ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 - [npp documentation](https://docs.nvidia.com/cuda/npp/index.html)
