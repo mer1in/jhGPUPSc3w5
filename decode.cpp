@@ -193,8 +193,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                 exit(EXIT_FAILURE);
             }
 
-            for(const auto & r : rectangles)
-                cv::rectangle(img, r, color, frame_thickness);
+//            for(const auto & r : rectangles)
+//                cv::rectangle(img, r, color, frame_thickness);
 
             cv::imwrite(filename_buf, img);
 
