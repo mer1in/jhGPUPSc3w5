@@ -149,7 +149,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
             snprintf(filename_buf, sizeof(filename_buf), "out/outframe_%d.jpg", frame->coded_picture_number);
             printf("Saving frame #%d to file %s\n", frame->coded_picture_number, filename_buf);
-
+/*
             int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
                         frame->data,            //const uint8_t* const srcSlice[],
                         frame->linesize,        //const int srcStride[],
@@ -208,7 +208,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
                         frame->linesize);   //const int dstStride[]);
 
             //encode(c, pBGRFrame, pkt_enc, video_dst_file);
-
+*/
         }
 
         sws_freeContext(sws_ctx);
