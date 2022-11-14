@@ -186,6 +186,9 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
 
             }
 
+            for(const auto & r : rectangles)
+                cv::rectangle(img, r, color, frame_thickness);
+
             err = cudaMemcpy(pBGRFrame->data[0], dev_mem, size, cudaMemcpyDeviceToHost);
             if (err != cudaSuccess)
             {
