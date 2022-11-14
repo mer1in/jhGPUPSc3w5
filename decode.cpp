@@ -324,7 +324,7 @@ int handle_video(const char *src_filename, const char *video_dst_filename)
         /* frames per second */
         c->time_base = (AVRational){1, 25};
         c->framerate = video_dec_ctx->framerate;
-        c->gop_size = video_dec_ctx->gop_size;
+        //c->gop_size = video_dec_ctx->gop_size;
         c->max_b_frames = video_dec_ctx->max_b_frames;
         c->pix_fmt = AV_PIX_FMT_YUV420P;
 
