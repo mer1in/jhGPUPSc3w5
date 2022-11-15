@@ -128,6 +128,8 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
     if (sws_ctx == nullptr || sws_ctx_rev == nullptr)
         return;  //Error!
 
+    static int max_frames_in_pkt = 0;
+    int frames_in_pkt = 0;
     // get all the available frames from the decoder
     while (ret >= 0) {
         ret = avcodec_receive_frame(dec, frame);
@@ -144,6 +146,10 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
         // write the frame data to output file
         if (dec->codec->type == AVMEDIA_TYPE_VIDEO)
         {
+
+            if (++frames_in_pkt > max_frames_in_pkt)
+                max_frames_in_pkt = frames_in_pkt;
+            printf("max_frames_in_pkt = %d\n", max_frames_in_pkt);
 
             //encode(c, frame, pkt_enc, video_dst_file);
 
