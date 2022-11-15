@@ -20,5 +20,5 @@ do
 done
 
 cp -r out/* ~/project/out/
-cp out/out.mp4 ~/coursera/
+cp out/*.mp4 ~/coursera/
 ls -l ~/coursera/
