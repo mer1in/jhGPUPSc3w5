@@ -8,7 +8,7 @@ void usage(char* name)
         "  output_file    name of a file to write results to, required\n"
         "  --verbose      verbose output"
         "  --dump-input   write each input frame to a file named <output_file>-input-<frame-number>.jpg"
-        "  --dump-blured  write each blured frame to a file named <output_file>-blured-<frame-number>.jpg"
+        "  --dump-blured  write each blured frame to a file named <output_file>-blured-<frame-number>.jpg",
         name);
     exit(1);
 }
