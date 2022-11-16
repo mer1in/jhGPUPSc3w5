@@ -1,4 +1,6 @@
-#include "decode.hpp"
+//#include "decode.hpp"
+#include <sstream> 
+#include "video_processor.hpp"
 
 void usage(char* name)
 {
@@ -18,7 +20,7 @@ int main (int argc, char **argv)
     if (argc != 3)
         usage(argv[0]);
 
-//    auto processor = new Processor(argv[1], argv[2]);
-//    return processor.run();
-    return handle_video(argv[1], argv[2]);
+    auto processor = new Processor(argv[1], argv[2]);
+    return processor.run();
+//    return handle_video(argv[1], argv[2]);
 }
