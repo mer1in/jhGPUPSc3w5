@@ -11,6 +11,8 @@ class VideoProcessor {
         VideoWriter writer;
         FaceDetector detector;
         Blurer painter;
+        string src_filename;
+        string dst_filename;
     public:
         VideoProcessor(std::string src_filename, std::string dst_filename);
         int run();
