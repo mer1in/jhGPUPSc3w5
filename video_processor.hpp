@@ -15,6 +15,8 @@ class VideoProcessor {
         string dst_filename;
     public:
         VideoProcessor(std::string src_filename, std::string dst_filename):
-            src_filename(src_filename), dst_filename(dst_filename){}
+            src_filename(src_filename),
+            dst_filename(dst_filename)
+            {};
         int run();
 };
