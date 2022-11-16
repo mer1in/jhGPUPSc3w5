@@ -18,7 +18,7 @@ VideoReader::VideoReader(std::string file_name) {
 
 
     if((stream_index = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
-        throw(Exception("Could not find " + av_get_media_type_string(AVMEDIA_TYPE_VIDEO) + " stream in input file"));
+        throw(Exception("Could not find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" stream in input file"));
     
 
 
