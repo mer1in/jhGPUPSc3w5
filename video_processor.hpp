@@ -7,10 +7,10 @@ using namespace std;
 
 class VideoProcessor {
     private:
-        VideoReader: reader;
-        VideoWriter: writer;
-        FaceDetector: detector;
-        Blur: painter;
+        VideoReader reader;
+        VideoWriter writer;
+        FaceDetector detector;
+        Blur painter;
     public:
         VideoProcessor(std::string src_filename, std::string dst_filename);
         int run();
