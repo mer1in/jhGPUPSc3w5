@@ -16,6 +16,7 @@ class VideoReader {
     private:
         AVFormatContext *fmt_ctx;
         AVCodec *codec;
+        AVCodecContext *video_dec_ctx;
         int video_stream_idx = -1;
         
     public:
