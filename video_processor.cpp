@@ -1,3 +1,3 @@
 #include "video_processor.cpp"
 
-VideoProcessor::VideoProcessor.run(){}
+int VideoProcessor::VideoProcessor.run(){}
