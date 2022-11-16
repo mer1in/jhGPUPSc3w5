@@ -10,8 +10,8 @@ class VideoProcessor {
         VideoReader reader;
         VideoWriter writer;
         FaceDetector detector;
-        Blur painter;
+        Blurer painter;
     public:
         VideoProcessor(std::string src_filename, std::string dst_filename);
         int run();
-}
+};

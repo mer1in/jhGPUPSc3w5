@@ -11,5 +11,4 @@ class VideoReader {
     public:
         VideoReader(std::string file_name);
         AVFrame* nextFrame();
-
 };
