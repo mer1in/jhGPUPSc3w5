@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "exception.hpp"
 
 extern "C" {
 #include <libswscale/swscale.h>
