@@ -15,6 +15,7 @@ extern "C" {
 class VideoReader {
     private:
         AVFormatContext *fmt_ctx;
+        AVCodec *codec;
         
     public:
         VideoReader(std::string file_name);
