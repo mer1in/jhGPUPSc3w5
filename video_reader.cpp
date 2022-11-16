@@ -2,6 +2,8 @@
 
 VideoReader::VideoReader(std::string file_name) {
 
+    int stream_index;
+
     if (avformat_open_input(&fmt_ctx, file_name.c_str(), NULL, NULL) < 0)
         throw(Exception("Could not open source file " + file_name));
 
@@ -15,5 +17,10 @@ VideoReader::VideoReader(std::string file_name) {
         video_stream = fmt_ctx->streams[video_stream_idx];
 
     }
+
+    if((stream_index = av_find_best_stream(fmt_ctx, type, -1, -1, NULL, 0)) < 0)
+        throw(Exception("Could not find " + av_get_media_type_string(type) + " stream in input file"));
+    
+
 
 }
