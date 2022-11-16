@@ -3,6 +3,7 @@
 #include "exception.hpp"
 
 extern "C" {
+#include <libavutil/samplefmt.h>
 #include <libswscale/swscale.h>
 #include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
