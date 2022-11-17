@@ -3,6 +3,7 @@
 
 VideoReader::VideoReader(std::string file_name) {
 
+    string media_type = av_get_media_type_string(AVMEDIA_TYPE_VIDEO);
     int stream_index;
     const AVCodec *dec = NULL;
     AVStream *st;
@@ -21,17 +22,21 @@ VideoReader::VideoReader(std::string file_name) {
     */
 
     if((stream_index = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
-        err("Could not find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" stream in input file");
+        err("Could not find "+media_type+" stream in input file");
     
     st = fmt_ctx->streams[stream_index];
     if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
-        err("Failed to find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec");
+        err("Failed to find "+media_type+" codec");
                     
     dec_ctx = avcodec_alloc_context3(dec);
     if (!dec_ctx)
         err("Failed to allocate the "+av_get_media_type_string(AVMEDIA_TYPE_VIDEO)+" codec context");
 
     if (avcodec_parameters_to_context(dec_ctx, st->codecpar) < 0)
-        err("Failed to copy "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec parameters to decoder ctx");
+        err("Failed to copy "+media_type+" codec parameters to decoder ctx");
+
+    if (avcodec_open2(dec_ctx, dec, NULL) < 0)
+        err("Failed to open "+media_type+" codec\n");
+
 
 }
