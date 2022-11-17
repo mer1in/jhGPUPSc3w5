@@ -24,7 +24,7 @@ VideoReader::VideoReader(std::string file_name) {
     
     st = fmt_ctx->streams[stream_index];
     if(!dec = avcodec_find_decoder(st->codecpar->codec_id))
-        throw(Exception("Failed to find "+string(av_get_media_type_string(type))+" codec\n");
+        throw(Exception("Failed to find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec");
                     
 
 }
