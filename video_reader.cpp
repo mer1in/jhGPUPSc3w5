@@ -38,4 +38,7 @@ VideoReader::VideoReader(std::string file_name) {
     if (avcodec_open2(dec_ctx, dec, NULL) < 0)
         err("Failed to open "+media_type+" codec\n");
 
+    if (!(video_stream = fmt_ctx->streams[video_stream_idx]))
+        err("Could not find video stream in the input, aborting");
+
 }
