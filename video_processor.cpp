@@ -10,7 +10,7 @@ VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filena
 {
     try{
         reader = VideoReader(src_filename);
-    } catch(e) {
+    } catch(Exception& e) {
         cout<<e.getMessage();
     }
 };
