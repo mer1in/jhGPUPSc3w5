@@ -50,6 +50,7 @@ VideoReader::VideoReader(std::string file_name) {
 }
 
 VideoReader::~VideoReader() {
+    int* a=0;
     avcodec_free_context(&dec_ctx);
     avformat_close_input(&fmt_ctx);
     av_packet_free(&pkt);
