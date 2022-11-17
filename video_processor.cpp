@@ -13,5 +13,5 @@ try :
 }
 catch(Exception& e) {
     cout<<"Exception caught"<<endl;
-    cout<<e.getMessage();
+    cout<<e.what()<<endl;
 }
