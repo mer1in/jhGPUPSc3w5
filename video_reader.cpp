@@ -7,8 +7,6 @@ VideoReader::VideoReader(std::string file_name) {
     const AVCodec *dec = NULL;
     AVStream *st;
 
-    err("XXX");
-    
     if (avformat_open_input(&fmt_ctx, file_name.c_str(), NULL, NULL) < 0)
         err("Could not open source file " + file_name);
 
@@ -29,5 +27,11 @@ VideoReader::VideoReader(std::string file_name) {
     if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
         err("Failed to find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec");
                     
+    dec_ctx = avcodec_alloc_context3(dec);
+    if (!dec_ctx)
+        err("Failed to allocate the "+av_get_media_type_string(AVMEDIA_TYPE_VIDEO)+" codec context");
+
+    if (avcodec_parameters_to_context(dec_ctx, st->codecpar) < 0)
+        err("Failed to copy "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec parameters to decoder ctx");
 
 }
