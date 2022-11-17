@@ -23,8 +23,8 @@ VideoReader::VideoReader(std::string file_name) {
         throw(Exception("Could not find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" stream in input file"));
     
     st = fmt_ctx->streams[stream_index];
-    if(!dec = avcodec_find_decoder(st->codecpar->codec_id))
-        throw(Exception("Failed to find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec");
+    if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
+        throw(Exception("Failed to find "+string(av_get_media_type_string(AVMEDIA_TYPE_VIDEO))+" codec"));
                     
 
 }
