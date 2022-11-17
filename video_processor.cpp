@@ -16,5 +16,5 @@ catch(Exception& e) {
 
 VideoProcessor::~VideoProcessor()
 {
-    delete(reader);
+    delete(&reader);
 }
