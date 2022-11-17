@@ -9,8 +9,12 @@ try :
     src_filename(src_filename),
     dst_filename(dst_filename),
     reader(src_filename)
-{
-}
+{ }
 catch(Exception& e) {
     cout<<e.what()<<endl;
+}
+
+VideoProcessor::~VideoProcessor()
+{
+    free(reader);
 }
