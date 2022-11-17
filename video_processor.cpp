@@ -12,6 +12,5 @@ try :
 {
 }
 catch(Exception& e) {
-    cout<<"Exception caught"<<endl;
     cout<<e.what()<<endl;
 }
