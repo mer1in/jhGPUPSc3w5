@@ -36,9 +36,15 @@ VideoReader::VideoReader(std::string file_name) {
         err("Failed to copy "+media_type+" codec parameters to decoder ctx");
 
     if (avcodec_open2(dec_ctx, dec, NULL) < 0)
-        err("Failed to open "+media_type+" codec\n");
+        err("Failed to open "+media_type+" codec");
 
     if (!(video_stream = fmt_ctx->streams[video_stream_idx]))
         err("Could not find video stream in the input, aborting");
+
+    if (!(frame = av_frame_alloc()))
+        err("Could not allocate frame");
+
+    if (!(pkt = av_packet_alloc()))
+        err("Couldn't allocate packet");
 
 }
