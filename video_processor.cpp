@@ -4,13 +4,13 @@ int VideoProcessor::run(){
    return 0; 
 };
 
-VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filename):
+VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filename)
+try :
     src_filename(src_filename),
-    dst_filename(dst_filename)
+    dst_filename(dst_filename),
+    reader(src_filename)
 {
-    try{
-        reader = VideoReader(src_filename);
-    } catch(Exception& e) {
-        cout<<e.getMessage();
-    }
-};
+}
+catch(Exception& e) {
+    cout<<e.getMessage();
+}
