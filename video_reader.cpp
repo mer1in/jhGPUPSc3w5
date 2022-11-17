@@ -7,7 +7,7 @@ VideoReader::VideoReader(std::string file_name) {
     AVStream *st;
 
     try{
-    throw(new Exception("XXX"));
+    throw(Exception("XXX"));
     }
     catch(Exception& e){
         printf("AAAAAA\n");
