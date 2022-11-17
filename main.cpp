@@ -22,6 +22,6 @@ int main (int argc, char **argv)
 
     auto processor = new VideoProcessor(argv[1], argv[2]);
     return processor->run();
-    free(processor);
+    delete(&processor);
 //    return handle_video(argv[1], argv[2]);
 }
