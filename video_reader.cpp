@@ -46,7 +46,6 @@ VideoReader::VideoReader(std::string file_name) {
 
     if (!(pkt = av_packet_alloc()))
         err("Couldn't allocate packet");
-
 }
 
 VideoReader::~VideoReader() {
