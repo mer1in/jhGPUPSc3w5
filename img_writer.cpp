@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ImgWriter::ImgWriter(input_file_name, suffix)
+ImgWriter::ImgWriter(string input_file_name, string suffix)
 {
     size_t pos = input_file_name.find('.');
     if (pos == npos)
