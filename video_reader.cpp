@@ -48,6 +48,11 @@ VideoReader::VideoReader(std::string file_name) {
         err("Couldn't allocate packet");
 }
 
+
+AVFrame* VideoReader::nextFrame()
+{}
+
+
 VideoReader::~VideoReader() {
     avcodec_free_context(&dec_ctx);
     avformat_close_input(&fmt_ctx);
