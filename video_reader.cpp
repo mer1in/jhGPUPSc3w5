@@ -20,10 +20,10 @@ VideoReader::VideoReader(std::string file_name) {
         err("Codec libx264 not found");
     */
 
-    if((stream_index = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
+    if((stream_idx = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
         err("Could not find "+media_type+" stream in input file");
     
-    st = fmt_ctx->streams[stream_index];
+    st = fmt_ctx->streams[stream_idx];
     if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
         err("Failed to find "+media_type+" codec");
                     
@@ -37,7 +37,7 @@ VideoReader::VideoReader(std::string file_name) {
     if (avcodec_open2(dec_ctx, dec, NULL) < 0)
         err("Failed to open "+media_type+" codec");
 
-    if (!(video_stream = fmt_ctx->streams[video_stream_idx]))
+    if (!(video_stream = fmt_ctx->streams[stream_idx]))
         err("Could not find video stream in the input, aborting");
 
     if (!(frame = av_frame_alloc()))
@@ -51,7 +51,7 @@ VideoReader::VideoReader(std::string file_name) {
 AVFrame* VideoReader::nextFrame()
 {
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
-        if (pkt->stream_index != video_stream_idx)
+        if (pkt->stream_idx != stream_idx)
         {
             fprintf(stderr, "skip non video stream\n");
             continue;
