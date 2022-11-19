@@ -51,8 +51,18 @@ VideoReader::VideoReader(std::string file_name) {
 
 AVFrame* VideoReader::nextFrame()
 {
-
-    return frame;
+    while (av_read_frame(fmt_ctx, pkt) >= 0) {
+        if (pkt->stream_index != video_stream_idx)
+            continue;
+        int ret = avcodec_send_packet(dec_ctx, pkt); 
+        if (ret < 0)
+        {
+            fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
+            return NULL;
+        }
+        return frame;
+    }
+    return NULL;
 }
 
 VideoReader::~VideoReader() {
