@@ -1,6 +1,7 @@
 #include "video_processor.hpp"
 
 int VideoProcessor::run(){
+    AVFrame *frame;
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
