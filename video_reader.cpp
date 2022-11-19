@@ -60,6 +60,14 @@ AVFrame* VideoReader::nextFrame()
             fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
             return NULL;
         }
+        ret = avcodec_receive_frame(dec_ctx, frame);
+        if (ret < 0)
+        {
+            if (ret == AVERROR_EOF || ret == AVERROR(EAGAIN))
+                continue;
+            fprintf(stderr, "Error during decoding (%i)\n", ret);
+            return NULL;
+        }
         return frame;
     }
     return NULL;
