@@ -17,7 +17,7 @@ void usage(char* name)
 
 int main (int argc, char **argv)
 {
-    if (argc != 3)
+    if (argc < 3)
         usage(argv[0]);
 
     auto processor = new VideoProcessor(argv[1], argv[2]);
