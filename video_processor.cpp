@@ -2,10 +2,12 @@
 
 int VideoProcessor::run(){
     AVFrame *frame;
+    int count = 0;
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
-        return 0;
+        if (count++>1000)
+            return -1;
     }
 
     cout<<"processing got NULL "<<endl;
