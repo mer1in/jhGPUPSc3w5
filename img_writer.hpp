@@ -3,10 +3,10 @@
 
 class ImgWriter {
     private:
-        string file_name;
+        std::string file_name;
         int num = 1;
     public:
-        ImgWriter(string input_file_name);
+        ImgWriter(std::string input_file_name);
         ~ImgWriter(){}
         int save();
 }
