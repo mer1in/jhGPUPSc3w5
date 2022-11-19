@@ -10,7 +10,7 @@ ImgWriter::ImgWriter(input_file_name, suffix)
     file_name = input_file_name.substr(0, pos) + "-" +suffix;
 }
 
-save(cv::Mat img)
+int ImgWriter::save(cv::Mat img)
 {
     string fn = file_name;
 
