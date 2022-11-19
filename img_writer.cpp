@@ -1,7 +1,5 @@
 #include "img_writer.hpp"
 
-using namespace std;
-
 ImgWriter::ImgWriter(string input_file_name, string suffix)
 {
     size_t pos = input_file_name.find('.');

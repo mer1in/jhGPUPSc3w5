@@ -2,12 +2,14 @@
 #include <string>
 #include <opencv2/opencv.hpp> 
 
+using namespace std;
+
 class ImgWriter {
     private:
-        std::string file_name;
+        string file_name;
         int num = 1;
     public:
-        ImgWriter(std::string input_file_name);
+        ImgWriter(string input_file_name, string suffix);
         ~ImgWriter(){}
         int save();
 }
