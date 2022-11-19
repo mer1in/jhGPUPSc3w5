@@ -12,4 +12,4 @@ class ImgWriter {
         ImgWriter(string input_file_name, string suffix);
         ~ImgWriter(){}
         int save();
-}
+};
