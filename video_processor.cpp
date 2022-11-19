@@ -1,7 +1,7 @@
 #include "video_processor.hpp"
 
 int VideoProcessor::run(){
-    while(frame = reader->nextFrame())
+    while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
     }
