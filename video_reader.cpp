@@ -51,7 +51,7 @@ VideoReader::VideoReader(std::string file_name) {
 AVFrame* VideoReader::nextFrame()
 {
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
-        if (pkt->stream_idx != stream_idx)
+        if (pkt->stream_index != stream_idx)
         {
             fprintf(stderr, "skip non video stream\n");
             continue;
