@@ -53,7 +53,10 @@ AVFrame* VideoReader::nextFrame()
 {
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
         if (pkt->stream_index != video_stream_idx)
+        {
+            fprintf(stderr, "skip non video stream\n");
             continue;
+        }
         int ret = avcodec_send_packet(dec_ctx, pkt); 
         if (ret < 0)
         {
@@ -71,7 +74,6 @@ AVFrame* VideoReader::nextFrame()
         fprintf(stderr, "alles gut, return frame");
         return frame;
     }
-    
     fprintf(stderr, "alles gut, no more frames");
     return NULL;
 }
