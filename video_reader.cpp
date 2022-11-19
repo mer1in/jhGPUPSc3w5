@@ -71,6 +71,8 @@ AVFrame* VideoReader::nextFrame()
         fprintf(stderr, "alles gut, return frame");
         return frame;
     }
+    
+    fprintf(stderr, "alles gut, no more frames");
     return NULL;
 }
 
