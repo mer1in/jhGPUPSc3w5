@@ -2,6 +2,7 @@
 #include "video_writer.hpp"
 #include "face_detector.hpp"
 #include "blurer.hpp"
+#include "img_writer.hpp"
 
 using namespace std;
 
