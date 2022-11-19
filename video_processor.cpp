@@ -5,6 +5,7 @@ int VideoProcessor::run(){
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
+
     }
 
     cout<<"processing got NULL "<<endl;
