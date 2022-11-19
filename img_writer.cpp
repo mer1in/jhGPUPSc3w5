@@ -1,6 +1,6 @@
 #include "img_writer.hpp"
 
-use namespace std;
+using namespace std;
 
 ImgWriter::ImgWriter(input_file_name, suffix)
 {
