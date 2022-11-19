@@ -15,7 +15,9 @@ VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filena
 try :
     src_filename(src_filename),
     dst_filename(dst_filename),
-    reader(src_filename)
+    reader(src_filename),
+    dump_input(0),
+    dump_blured(0)
 { }
 catch(Exception& e) {
     cout<<e.what()<<endl;
