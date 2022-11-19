@@ -4,7 +4,6 @@
 VideoReader::VideoReader(std::string file_name) {
 
     string media_type = av_get_media_type_string(AVMEDIA_TYPE_VIDEO);
-    int stream_index;
     const AVCodec *dec = NULL;
     AVStream *st;
 
