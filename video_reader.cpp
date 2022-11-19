@@ -68,6 +68,7 @@ AVFrame* VideoReader::nextFrame()
             fprintf(stderr, "Error during decoding (%i)\n", ret);
             return NULL;
         }
+        fprintf(stderr, "alles gut, return frame");
         return frame;
     }
     return NULL;
