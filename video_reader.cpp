@@ -50,8 +50,10 @@ VideoReader::VideoReader(std::string file_name) {
 
 
 AVFrame* VideoReader::nextFrame()
-{}
+{
 
+    return frame;
+}
 
 VideoReader::~VideoReader() {
     avcodec_free_context(&dec_ctx);
