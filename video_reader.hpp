@@ -14,12 +14,12 @@ extern "C" {
 
 class VideoReader {
     private:
-        AVFormatContext *fmt_ctx;
+        AVFormatContext *fmt_ctx = NULL;
         AVStream *video_stream;
-        AVCodecContext *dec_ctx;
+        AVCodecContext *dec_ctx = NULL;
         int video_stream_idx = -1;
-        AVFrame *frame;
-        AVPacket *pkt;
+        AVFrame *frame = NULL;
+        AVPacket *pkt = NULL;
         
     public:
         VideoReader(std::string file_name);
