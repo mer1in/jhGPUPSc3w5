@@ -7,7 +7,9 @@ int VideoProcessor::run(){
         cout<<"processing"<<endl;
         return 0;
     }
-   return 0; 
+
+    cout<<"processing got NULL "<<endl;
+    return 0; 
 };
 
 VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filename)
