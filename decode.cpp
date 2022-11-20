@@ -170,7 +170,7 @@ static int decode_packet(AVCodecContext *dec, const AVPacket *pkt)
             cv::Mat img = cv::Mat(pBGRFrame->height, pBGRFrame->width,
                 CV_8UC3, pBGRFrame->data[0], pBGRFrame->linesize[0]);
 
-            auto rectangles = face_detector.detect_face_rectangles(img);
+            auto rectangles = face_detector.detect(img);
             printf("found %d faces\n", rectangles.size());
 
             cv::Scalar color(0, 105, 205);
