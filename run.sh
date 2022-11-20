@@ -2,6 +2,7 @@
 
 PROJ=videoHideFaces
 rm $PROJ
+rm out/*
 (
 # XXX: debug
 #rm -fr build ; rm -fr out ; rm videoHideFaces
