@@ -12,7 +12,7 @@ int VideoProcessor::run(){
     return 0; 
 };
 
-VideoProcessor:: VideoProcessor(string src_filename, string dst_filename, strig dump_input, string dump_blured)
+VideoProcessor:: VideoProcessor(string src_filename, string dst_filename, string dump_input, string dump_blured)
 try :
     src_filename(src_filename),
     dst_filename(dst_filename),
