@@ -10,6 +10,6 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
 {
     pkt_enc = av_packet_alloc();
     if (!pkt_enc) {
-        fprintf(stderr, "Could not allocate packet\n");
+        err("Could not allocate packet");
     }
 };
