@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 PROJ=videoHideFaces
-
+rm $PROJ
 (
 # XXX: debug
 #rm -fr build ; rm -fr out ; rm videoHideFaces
