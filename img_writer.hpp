@@ -8,6 +8,7 @@ class ImgWriter {
     private:
         string file_name;
         int num = 1;
+        enabled = false;
     public:
         ImgWriter(string input_file_name, string suffix);
         ~ImgWriter(){}
