@@ -30,7 +30,7 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 
     }
 
-    err = cudaMemcpy(pBGRFrame->data[0], dev_mem, size, cudaMemcpyDeviceToHost);
+    err = cudaMemcpy(img.data, dev_mem, size, cudaMemcpyDeviceToHost);
     if (err != cudaSuccess)
     {
         fprintf(stderr, "Failed to copy video frame from device to host (error code %s)!\n", cudaGetErrorString(err));
