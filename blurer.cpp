@@ -19,7 +19,7 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
         exit(EXIT_FAILURE);
     }
 
-    for(const auto & r : rectangles){
+    for(const auto & r : faces){
 
         NppiSize isize = {r.width, r.height};
         Npp8u *face_addr = dev_mem + (r.y * pBGRFrame->width * 3 + r.x * 3);
