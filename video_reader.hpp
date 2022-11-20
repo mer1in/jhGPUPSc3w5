@@ -21,6 +21,7 @@ class VideoReader {
         AVFrame *frame = NULL;
         AVFrame *pBGRFrame = NULL;
         AVPacket *pkt = NULL;
+        SwsContext* sws_ctx = NULL;
         
     public:
         VideoReader(std::string file_name);
