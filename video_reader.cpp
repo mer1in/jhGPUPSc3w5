@@ -5,7 +5,7 @@ VideoReader::VideoReader(std::string file_name) {
 
     string media_type = av_get_media_type_string(AVMEDIA_TYPE_VIDEO);
     const AVCodec *dec = NULL;
-    AVStream *st;
+    const AVStream *st;
 
     if (avformat_open_input(&fmt_ctx, file_name.c_str(), NULL, NULL) < 0)
         err("Could not open source file " + file_name);
