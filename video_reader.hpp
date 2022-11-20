@@ -19,6 +19,7 @@ class VideoReader {
         AVCodecContext *dec_ctx = NULL;
         int stream_idx = -1;
         AVFrame *frame = NULL;
+        AVFrame *pBGRFrame = NULL;
         AVPacket *pkt = NULL;
         
     public:
