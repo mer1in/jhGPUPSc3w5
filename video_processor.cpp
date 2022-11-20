@@ -18,7 +18,7 @@ try :
     dst_filename(dst_filename),
     reader(src_filename),
     input_img_writer(dump_input, "input"),
-    dump_blured(dump_blured, "blured")
+    blured_img_writer(dump_blured, "blured")
 { }
 catch(Exception& e) {
     cout<<e.what()<<endl;
