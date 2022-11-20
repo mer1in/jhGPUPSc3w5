@@ -12,6 +12,7 @@ int VideoProcessor::run(){
         auto v = detector.detect(img);
         painter.blur(v, img);
         blured_img_writer.save(img);
+        writer.write(img);
     }
 
     cout<<"processing got NULL "<<endl;
@@ -23,9 +24,12 @@ try :
     src_filename(src_filename),
     dst_filename(dst_filename),
     reader(src_filename),
+    writer(dst_filename),
     input_img_writer(dump_input, "input"),
     blured_img_writer(dump_blured, "blured")
-{ }
+{
+    
+}
 catch(Exception& e) {
     cout<<e.what()<<endl;
 }
