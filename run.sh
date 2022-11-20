@@ -16,7 +16,7 @@ mv $PROJ ..
 [ -d out ] || mkdir out
 for file_name in F01 F02
 do
-    ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4
+    ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4 --dump-input
 done
 
 cp -r out/* ~/project/out/
