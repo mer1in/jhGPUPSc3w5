@@ -39,6 +39,6 @@ TODO:
   - [x] npp sandbox
     - [ ] ~~install npp~~
 - [ ] write stream
-  - [ ] make it work with global vars
+  - [x] make it work with global vars
   - [ ] rewrite with classes
 - [ ] documentation
