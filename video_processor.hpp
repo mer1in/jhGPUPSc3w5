@@ -20,6 +20,4 @@ class VideoProcessor {
         VideoProcessor(std::string src_filename, std::string dst_filename);
         ~VideoProcessor();
         int run();
-        void setDumpInput(bool val){dump_input = val;}
-        void setDumpBlured(bool val){dump_blured = val;}
 };
