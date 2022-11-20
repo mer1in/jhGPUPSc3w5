@@ -13,6 +13,10 @@ extern "C" {
 }
 
 class VideoReader {
+    public:
+        VideoReader(std::string file_name);
+        ~VideoReader();
+        AVFrame* nextFrame();
     private:
         AVFormatContext *fmt_ctx = NULL;
         AVStream *video_stream;
@@ -22,9 +26,4 @@ class VideoReader {
         AVFrame *pBGRFrame = NULL;
         AVPacket *pkt = NULL;
         SwsContext* sws_ctx = NULL;
-        
-    public:
-        VideoReader(std::string file_name);
-        ~VideoReader();
-        AVFrame* nextFrame();
 };
