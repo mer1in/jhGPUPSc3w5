@@ -17,7 +17,7 @@ FaceDetector::FaceDetector() :
     }
 }
 
-std::vector<cv::Rect> FaceDetector::detect_face_rectangles(const cv::Mat &frame)
+std::vector<cv::Rect> FaceDetector::detect(const cv::Mat &frame)
 {
     int failc = 1;
     cv::Mat input_blob = cv::dnn::blobFromImage(frame, scale_factor_,

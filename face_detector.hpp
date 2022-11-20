@@ -4,7 +4,7 @@
 class FaceDetector { 
     public:     
         explicit FaceDetector();
-        std::vector<cv::Rect> detect_face_rectangles(const cv::Mat &frame);
+        std::vector<cv::Rect> detect(const cv::Mat &frame);
     private:     
         cv::dnn::Net network_;     
         const int input_image_width_;     
