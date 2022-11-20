@@ -4,6 +4,7 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 
     if (!dev_mem)
     {
+        size_t size = 3 * img.size().width * img.size().height;
         cudaError_t err = cudaMalloc(&dev_mem, size);
         if (err != cudaSuccess)
         {
