@@ -14,7 +14,10 @@ ImgWriter::ImgWriter(string input_file_name, string suffix)
 void ImgWriter::save(cv::Mat img)
 {
     if(!enabled)
+    {
+        cout<<"writer not enabled"<<endl;
         return;
+    }
     string fn = file_name + to_string(num) + ".jpg";
     cout<<"saving"<<fn<<endl;
     cv::imwrite(fn.c_str(), img);
