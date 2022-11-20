@@ -10,6 +10,7 @@ int VideoProcessor::run(){
             CV_8UC3, frame->data[0], frame->linesize[0]);
         input_img_writer.save(img);
         auto v = detector.detect(img);
+        blurer.blur(v, img);
     }
 
     cout<<"processing got NULL "<<endl;
