@@ -9,6 +9,7 @@ int VideoProcessor::run(){
         cv::Mat img = cv::Mat(frame->height, frame->width,
             CV_8UC3, frame->data[0], frame->linesize[0]);
         input_img_writer.save(img);
+        auto v = face_detector.detect(img);
     }
 
     cout<<"processing got NULL "<<endl;
