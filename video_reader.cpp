@@ -46,8 +46,8 @@ VideoReader::VideoReader(std::string file_name) {
     if (!(pBGRFrame = av_frame_alloc()))
         err("Could not allocate BGR frame");
     pBGRFrame->format = AV_PIX_FMT_BGR24;
-    pBGRFrame->width = dec->width;
-    pBGRFrame->height = dec->height;
+    pBGRFrame->width = dec_ctx->width;
+    pBGRFrame->height = dec_ctx->height;
     if (av_frame_get_buffer(pBGRFrame, 0) < 0)
         err("Cannot allocate pBGRFrame frame buffer");
 
