@@ -1,7 +1,9 @@
 #include "blurer.hpp"
 void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 {
-    size_t size = 3 * img.size().width * img.size().height;
+    auto width = img.size().width;
+    auto height = img.size().height;
+    size_t size = 3 * width * height;
     if (!dev_mem)
     {
         cudaError_t err = cudaMalloc(&dev_mem, size);
@@ -22,9 +24,9 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
     for(const auto & r : faces){
 
         NppiSize isize = {r.width, r.height};
-        Npp8u *face_addr = dev_mem + (r.y * pBGRFrame->width * 3 + r.x * 3);
+        Npp8u *face_addr = dev_mem + (r.y * width * 3 + r.x * 3);
         printf("face_addr x = %d y = %d\n", r.x, r.y);
-        nppiFilterGauss_8u_C3R(face_addr, pBGRFrame->width*3, face_addr, pBGRFrame->width*3, isize, NPP_MASK_SIZE_15_X_15);
+        nppiFilterGauss_8u_C3R(face_addr, width*3, face_addr, width*3, isize, NPP_MASK_SIZE_15_X_15);
 
     }
 
