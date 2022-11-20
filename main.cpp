@@ -30,8 +30,6 @@ int main (int argc, char **argv)
             dumpBlured = true;
     }
 
-    cout<<"dumpInput"<<dumpInput<<endl;
-    exit(1);
     VideoProcessor processor(argv[1], argv[2], dumpInput ? argv[2] : "", dumpBlured ? argv[2] : "");
 
     processor.run();
