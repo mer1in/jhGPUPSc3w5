@@ -5,7 +5,7 @@ int VideoProcessor::run(){
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
-        
+        input_img_writer.save(frame);
     }
 
     cout<<"processing got NULL "<<endl;
