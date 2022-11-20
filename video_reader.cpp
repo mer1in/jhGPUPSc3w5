@@ -92,7 +92,7 @@ AVFrame* VideoReader::nextFrame()
             pBGRFrame->data,        //uint8_t* const dst[], 
             pBGRFrame->linesize);   //const int dstStride[]);
 
-        return frame;
+        return pBGRFrame;
     }
     fprintf(stderr, "alles gut, no more frames\n");
     return NULL;
