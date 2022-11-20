@@ -43,6 +43,14 @@ VideoReader::VideoReader(std::string file_name) {
     if (!(frame = av_frame_alloc()))
         err("Could not allocate frame");
 
+    if (!(pBGRFrame = av_frame_alloc()))
+        err("Could not allocate BGR frame");
+    pBGRFrame->format = AV_PIX_FMT_BGR24;
+    pBGRFrame->width = dec->width;
+    pBGRFrame->height = dec->height;
+    if (av_frame_get_buffer(pBGRFrame, 0) < 0)
+        err("Cannot allocate pBGRFrame frame buffer");
+
     if (!(pkt = av_packet_alloc()))
         err("Couldn't allocate packet");
 }
@@ -71,6 +79,15 @@ AVFrame* VideoReader::nextFrame()
             return NULL;
         }
         fprintf(stderr, "alles gut, return frame\n");
+        
+        int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
+            frame->data,            //const uint8_t* const srcSlice[],
+            frame->linesize,        //const int srcStride[],
+            0,                      //int srcSliceY, 
+            frame->height,          //int srcSliceH,
+            pBGRFrame->data,        //uint8_t* const dst[], 
+            pBGRFrame->linesize);   //const int dstStride[]);
+
         return frame;
     }
     fprintf(stderr, "alles gut, no more frames\n");
