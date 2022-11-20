@@ -32,8 +32,6 @@ int main (int argc, char **argv)
 
     VideoProcessor processor(argv[1], argv[2], dumpInput ? argv[2] : "", dumpBlured ? argv[2] : "");
 
-
-    processor->run();
-    delete(processor);
+    processor.run();
 //    return handle_video(argv[1], argv[2]);
 }
