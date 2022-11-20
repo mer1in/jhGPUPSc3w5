@@ -1,4 +1,5 @@
 #include "video_writer.hpp"
+#define err(MSG) throw(Exception(string("VideoWriter: ")+MSG))
 
 void VideoWriter::write(cv::Mat img){
 
