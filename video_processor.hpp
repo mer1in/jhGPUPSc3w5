@@ -17,7 +17,7 @@ class VideoProcessor {
         ImgWriter input_img_writer;
         ImgWriter blured_img_writer;
     public:
-        VideoProcessor(std::string src_filename, std::string dst_filename);
+        VideoProcessor(string src_filename, string dst_filename, strig dump_input, string dump_blured);
         ~VideoProcessor();
         int run();
 };
