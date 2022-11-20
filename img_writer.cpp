@@ -16,5 +16,6 @@ void ImgWriter::save(cv::Mat img)
     if(!enabled)
         return;
     string fn = file_name + to_string(num) + ".jpg";
+    cout<<"saving"<<fn<<endl;
     cv::imwrite(fn.c_str(), img);
 }
