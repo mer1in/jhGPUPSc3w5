@@ -11,5 +11,5 @@ class ImgWriter {
     public:
         ImgWriter(string input_file_name, string suffix);
         ~ImgWriter(){}
-        int save(cv::Mat img);
+        void save(cv::Mat img);
 };

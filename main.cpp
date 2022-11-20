@@ -16,17 +16,23 @@ void usage(char* name)
 
 int main (int argc, char **argv)
 {
+    bool dumpInput = false;
+    bool dumpBlured = false;
+
     if (argc < 3)
         usage(argv[0]);
     
-    auto processor = new VideoProcessor(argv[1], argv[2]);
     for (int i=3; i<argc; i++)
     {
         if (string(argv[i]).compare("--dump-input"))
-            processor->setDumpInput(true);
+            dumpInput = true;
         if (string(argv[i]).compare("--dump-blured"))
-            processor->setDumpBlured(true);
+            dumpBlured = true;
     }
+
+    VideoProcessor processor(argv[1], argv[2], dumpInput ? argv[2] : "", dumpBlured ? argv[2] : "");
+
+
     processor->run();
     delete(processor);
 //    return handle_video(argv[1], argv[2]);

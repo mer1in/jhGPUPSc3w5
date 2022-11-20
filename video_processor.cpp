@@ -5,20 +5,20 @@ int VideoProcessor::run(){
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
-
+        
     }
 
     cout<<"processing got NULL "<<endl;
     return 0; 
 };
 
-VideoProcessor:: VideoProcessor(std::string src_filename, std::string dst_filename)
+VideoProcessor:: VideoProcessor(string src_filename, string dst_filename, strig dump_input, string dump_blured)
 try :
     src_filename(src_filename),
     dst_filename(dst_filename),
     reader(src_filename),
-    dump_input(0),
-    dump_blured(0)
+    input_img_writer(dump_input, "input"),
+    dump_blured(dump_blured, "blured")
 { }
 catch(Exception& e) {
     cout<<e.what()<<endl;
