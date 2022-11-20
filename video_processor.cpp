@@ -5,7 +5,10 @@ int VideoProcessor::run(){
     while(frame = reader.nextFrame())
     {
         cout<<"processing"<<endl;
-        input_img_writer.save(frame);
+
+        cv::Mat img = cv::Mat(frame->height, frame->width,
+            CV_8UC3, frame->data[0], frame->linesize[0]);
+        input_img_writer.save(img);
     }
 
     cout<<"processing got NULL "<<endl;
