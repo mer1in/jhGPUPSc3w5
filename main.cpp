@@ -24,9 +24,9 @@ int main (int argc, char **argv)
     
     for (int i=3; i<argc; i++)
     {
-        if (string(argv[i]).compare("--dump-input"))
+        if (!string(argv[i]).compare("--dump-input"))
             dumpInput = true;
-        if (string(argv[i]).compare("--dump-blured"))
+        if (!string(argv[i]).compare("--dump-blured"))
             dumpBlured = true;
     }
 
