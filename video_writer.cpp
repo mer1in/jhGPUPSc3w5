@@ -47,6 +47,6 @@ void VideoWriter::init(AVCodecContext* dec_ctx, AVFrame* frame)
     if (avcodec_open2(ctx, codec, NULL) < 0)
         err("Could not open codec");
 
-    if (!(file = fopen(file_name, "wb")))
+    if (!(file = fopen(file_name.c_str(), "wb")))
         err("Could not open "+file_name);
 }
