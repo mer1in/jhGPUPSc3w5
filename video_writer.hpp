@@ -19,5 +19,6 @@ class VideoWriter {
         AVCodec *codec;
         AVPacket *pkt = NULL;
         AVCodecContext *ctx = NULL;
+        SwsContext* sws_ctx = NULL;
         FILE *file = NULL;
 };
