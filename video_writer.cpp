@@ -7,10 +7,10 @@ void VideoWriter::write(AVFrame* frame){
         return;
 
     cout<<"sws scale"<<endl;
-    sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, frame->data, frame->linesize);
+    sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, frame->linesize);
     cout<<"sws scale done"<<endl;
 
-    if (avcodec_send_frame(ctx, frame) < 0)
+    if (avcodec_send_frame(ctx, enc_frame) < 0)
         err("Error sending a frame for encoding");
 
     while (ret >= 0) {
