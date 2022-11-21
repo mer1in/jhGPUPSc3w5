@@ -2,7 +2,7 @@
 #define catchCudaErr(F) { \
     cudaError_t err = F; \
     if (err != cudaSuccess){ \
-        throw(Exception(string("Blurer: ")+cudaGetErrorString(err))) \
+        throw(Exception(string("Blurer: ")+cudaGetErrorString(err))); \
     } \
 }
 
