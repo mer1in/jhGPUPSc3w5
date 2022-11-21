@@ -12,7 +12,7 @@ int VideoProcessor::run(){
         auto v = detector.detect(img);
         painter.blur(v, img);
         blured_img_writer.save(img);
-        writer.write(img);
+        writer.write(frame);
     }
 
     cout<<"processing got NULL "<<endl;
