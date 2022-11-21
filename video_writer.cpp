@@ -5,7 +5,16 @@ void VideoWriter::write(AVFrame* frame){
     int ret = 0;
     if (!frame)
         return;
-
+    if (!enc_frame)
+    {
+        enc_frame = av_frame_alloc();
+        enc_frame->format = AV_PIX_FMT_YUV420P;
+        enc_frame->width = dec->width;
+        enc_frame->height = dec->height;
+        if (av_frame_get_buffer(enc_frame, 0) < 0)
+            err("Cannot allocate frame buffer");
+    }
+    
     cout<<"sws scale"<<endl;
     sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, frame->linesize);
     cout<<"sws scale done"<<endl;
@@ -36,10 +45,6 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
         err("Codec libx264 not found");
     if (!(ctx = avcodec_alloc_context3(codec)))
         err("Could not allocate video codec context");
-
-    enc_frame = av_frame_alloc();
-    if (!enc_frame)
-        err("Could not allocate frame");
 
 };
 
