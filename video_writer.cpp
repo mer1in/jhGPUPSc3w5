@@ -26,7 +26,7 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
     if (!pkt)
         err("Could not allocate packet");
 
-    const AVCodec *codec = avcodec_find_encoder_by_name("libx264");
+    codec = avcodec_find_encoder_by_name("libx264");
     if (!codec)
         err("Codec libx264 not found");
     if (!(ctx = avcodec_alloc_context3(codec)))
