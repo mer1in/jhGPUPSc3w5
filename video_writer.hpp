@@ -15,7 +15,7 @@ class VideoWriter {
         void write(AVFrame* frame);
     private:
         string file_name;
-        AVPacket *pkt_enc = NULL;
+        AVPacket *pkt = NULL;
         AVCodecContext *ctx = NULL;
         FILE *file = NULL;
 };

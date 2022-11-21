@@ -23,8 +23,8 @@ void VideoWriter::write(AVFrame* frame){
 
 VideoWriter::VideoWriter(string file_name) : file_name(file_name)
 {
-    pkt_enc = av_packet_alloc();
-    if (!pkt_enc)
+    pkt = av_packet_alloc();
+    if (!pkt)
         err("Could not allocate packet");
 
     const AVCodec *codec = avcodec_find_encoder_by_name("libx264");
