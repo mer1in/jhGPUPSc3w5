@@ -1,5 +1,5 @@
 #include "blurer.hpp"
-#define err(F) { \
+#define catchCudaErr(F) { \
     cudaError_t err = F; \
     if (err != cudaSuccess){ \
         throw(Exception(string("Blurer: ")+cudaGetErrorString(err))) \
@@ -12,14 +12,7 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
     auto height = img.size().height;
     size_t size = 3 * width * height;
     if (!dev_mem)
-    {
-        cudaError_t err = cudaMalloc(&dev_mem, size);
-        if (err != cudaSuccess)
-        {
-            fprintf(stderr, "Failed to allocate device vector memory (error code %s)!\n", cudaGetErrorString(err));
-            exit(EXIT_FAILURE);
-        }
-    }
+        catchCudaErr(cudaMalloc(&dev_mem, size));
     
     cudaError_t err = cudaMemcpy(dev_mem, img.data, size, cudaMemcpyHostToDevice);
     if (err != cudaSuccess)
