@@ -32,6 +32,7 @@ void VideoWriter::write(AVFrame* frame){
             err( "Error during encoding\n");
         fwrite(pkt->data, 1, pkt->size, file);
         av_packet_unref(pkt);
+        printf("Write packet %3"PRId64" (size=%5d)\n", pkt->pts, pkt->size);
     }
 }
 
