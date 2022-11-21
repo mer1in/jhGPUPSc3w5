@@ -13,6 +13,7 @@ void VideoWriter::write(AVFrame* frame){
         enc_frame->height = frame->height;
         if (av_frame_get_buffer(enc_frame, 0) < 0)
             err("Cannot allocate frame buffer");
+        cout<<"enc_frame allocated"<<endl;
     }
     
     cout<<"sws scale"<<endl;
@@ -45,7 +46,6 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
         err("Codec libx264 not found");
     if (!(ctx = avcodec_alloc_context3(codec)))
         err("Could not allocate video codec context");
-
 };
 
 void VideoWriter::init(AVCodecContext* dec_ctx)
