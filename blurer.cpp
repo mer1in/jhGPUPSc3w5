@@ -1,5 +1,5 @@
 #include "blurer.hpp"
-#define catchCudaErr(F) { \
+#define cudaCall(F) { \
     cudaError_t err = F; \
     if (err != cudaSuccess){ \
         throw(Exception(string("Blurer: ")+cudaGetErrorString(err))); \
@@ -12,14 +12,9 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
     auto height = img.size().height;
     size_t size = 3 * width * height;
     if (!dev_mem)
-        catchCudaErr(cudaMalloc(&dev_mem, size));
+        cudaCall(cudaMalloc(&dev_mem, size));
     
-    cudaError_t err = cudaMemcpy(dev_mem, img.data, size, cudaMemcpyHostToDevice);
-    if (err != cudaSuccess)
-    {
-        fprintf(stderr, "Failed to copy video frame from host to device (error code %s)!\n", cudaGetErrorString(err));
-        exit(EXIT_FAILURE);
-    }
+    cudaCall(cudaMemcpy(dev_mem, img.data, size, cudaMemcpyHostToDevice));
 
     for(const auto & r : faces){
 
@@ -30,13 +25,6 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 
     }
 
-    err = cudaMemcpy(img.data, dev_mem, size, cudaMemcpyDeviceToHost);
-    if (err != cudaSuccess)
-    {
-        fprintf(stderr, "Failed to copy video frame from device to host (error code %s)!\n", cudaGetErrorString(err));
-        exit(EXIT_FAILURE);
-    }
-
-
+    cudaCall(cudaMemcpy(img.data, dev_mem, size, cudaMemcpyDeviceToHost));
 }
 
