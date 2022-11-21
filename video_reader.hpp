@@ -17,6 +17,7 @@ class VideoReader {
         VideoReader(std::string file_name);
         ~VideoReader();
         AVFrame* nextFrame();
+        AVCodecContext* getCodecCtx(){return dec_ctx;}
     private:
         AVFormatContext *fmt_ctx = NULL;
         AVStream *video_stream;
