@@ -5,11 +5,11 @@ void VideoWriter::write(AVFrame* frame){
     int ret = 0;
     if (!frame)
         return;
-    if (avcodec_send_frame(enc_ctx, frame) < 0)
+    if (avcodec_send_frame(ctx, frame) < 0)
         err("Error sending a frame for encoding");
 
     while (ret >= 0) {
-        ret = avcodec_receive_packet(enc_ctx, pkt);
+        ret = avcodec_receive_packet(ctx, pkt);
         if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
             return;
         else if (ret < 0)
