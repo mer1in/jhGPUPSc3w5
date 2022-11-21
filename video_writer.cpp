@@ -8,7 +8,7 @@ void VideoWriter::write(AVFrame* frame){
     if (!enc_frame)
     {
         enc_frame = av_frame_alloc();
-        enc_frame->format = AV_PIX_FMT_YUV420P;
+        enc_frame->format = AV_PIX_FMT_BGR24;
         enc_frame->width = frame->width;
         enc_frame->height = frame->height;
         if (av_frame_get_buffer(enc_frame, 0) < 0)
