@@ -19,7 +19,6 @@ class VideoReader {
         AVFrame* nextFrame();
         AVCodecContext* getCodecCtx(){return dec_ctx;}
         AVFrame* getCleanFrame(){return frame;}
-
     private:
         AVFormatContext *fmt_ctx = NULL;
         AVStream *video_stream;
