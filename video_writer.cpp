@@ -36,9 +36,14 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
         err("Codec libx264 not found");
     if (!(ctx = avcodec_alloc_context3(codec)))
         err("Could not allocate video codec context");
+
+    enc_frame = av_frame_alloc();
+    if (!enc_frame)
+        err("Could not allocate frame");
+
 };
 
-void VideoWriter::init(AVCodecContext* dec_ctx, AVFrame* frame)
+void VideoWriter::init(AVCodecContext* dec_ctx)
 {
     ctx->bit_rate = dec_ctx->bit_rate;
     ctx->width = dec_ctx->width;
