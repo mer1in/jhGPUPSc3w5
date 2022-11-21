@@ -6,16 +6,6 @@ void VideoWriter::write(AVFrame* frame){
     if (!frame)
         return;
     printf("Send frame %3"PRId64"\n", frame->pts);
-    if (!enc_frame)
-    {
-        enc_frame = av_frame_alloc();
-        enc_frame->format = AV_PIX_FMT_YUV420P;
-        enc_frame->width = frame->width;
-        enc_frame->height = frame->height;
-        if (av_frame_get_buffer(enc_frame, 0) < 0)
-            err("Cannot allocate frame buffer");
-        cout<<"enc_frame allocated"<<endl;
-    }
 
     cout<<"sws scale"<<endl;
     sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, enc_frame->linesize);
@@ -36,7 +26,6 @@ void VideoWriter::write(AVFrame* frame){
     }
 }
 
-
 VideoWriter::VideoWriter(string file_name) : file_name(file_name)
 {
     pkt = av_packet_alloc();
@@ -50,7 +39,7 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
         err("Could not allocate video codec context");
 };
 
-void VideoWriter::init(AVCodecContext* dec_ctx)
+void VideoWriter::init(AVCodecContext* dec_ctx, AVFrame* frame)
 {
     ctx->bit_rate = dec_ctx->bit_rate;
     ctx->width = dec_ctx->width;
@@ -71,4 +60,6 @@ void VideoWriter::init(AVCodecContext* dec_ctx)
 
     if (!(file = fopen(file_name.c_str(), "wb")))
         err("Could not open "+file_name);
+
+    enc_frame = frame;
 }
