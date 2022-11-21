@@ -12,7 +12,7 @@ using namespace std;
 class VideoWriter {
     public:
         VideoWriter(string file_name);
-        void init(AVCodecContext* dec_ctx);
+        void init(AVCodecContext* dec_ctx, AVFrame* frame);
         void write(AVFrame* frame);
     private:
         string file_name;
