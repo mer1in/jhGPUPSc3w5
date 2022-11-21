@@ -6,7 +6,9 @@ void VideoWriter::write(AVFrame* frame){
     if (!frame)
         return;
 
+    cout<<"sws scale"<<endl;
     sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, frame->data, frame->linesize);
+    cout<<"sws scale done"<<endl;
 
     if (avcodec_send_frame(ctx, frame) < 0)
         err("Error sending a frame for encoding");
@@ -50,7 +52,6 @@ void VideoWriter::init(AVCodecContext* dec_ctx, AVFrame* frame)
     if (avcodec_open2(ctx, codec, NULL) < 0)
         err("Could not open codec");
 
-    
     sws_ctx = sws_getContext(dec_ctx->width, dec_ctx->height, AV_PIX_FMT_BGR24, dec_ctx->width,
          dec_ctx->height, AV_PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
     if(!sws_ctx)
