@@ -1,4 +1,11 @@
 #include "blurer.hpp"
+#define err(F) { \
+    cudaError_t err = F; \
+    if (err != cudaSuccess){ \
+        throw(Exception(string("Blurer: ")+cudaGetErrorString(err))) \
+    } \
+}
+
 void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 {
     auto width = img.size().width;
