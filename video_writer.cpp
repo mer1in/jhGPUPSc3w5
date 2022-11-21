@@ -8,16 +8,16 @@ void VideoWriter::write(AVFrame* frame){
     if (!enc_frame)
     {
         enc_frame = av_frame_alloc();
-        enc_frame->format = AV_PIX_FMT_BGR24;
+        enc_frame->format = AV_PIX_FMT_YUV420P;
         enc_frame->width = frame->width;
         enc_frame->height = frame->height;
         if (av_frame_get_buffer(enc_frame, 0) < 0)
             err("Cannot allocate frame buffer");
         cout<<"enc_frame allocated"<<endl;
     }
-    
+
     cout<<"sws scale"<<endl;
-    sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, frame->linesize);
+    sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, enc_frame->linesize);
     cout<<"sws scale done"<<endl;
 
     if (avcodec_send_frame(ctx, enc_frame) < 0)
