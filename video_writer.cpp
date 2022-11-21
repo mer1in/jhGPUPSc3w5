@@ -9,8 +9,8 @@ void VideoWriter::write(AVFrame* frame){
     {
         enc_frame = av_frame_alloc();
         enc_frame->format = AV_PIX_FMT_YUV420P;
-        enc_frame->width = dec->width;
-        enc_frame->height = dec->height;
+        enc_frame->width = frame->width;
+        enc_frame->height = frame->height;
         if (av_frame_get_buffer(enc_frame, 0) < 0)
             err("Cannot allocate frame buffer");
     }
