@@ -5,6 +5,7 @@ void VideoWriter::write(AVFrame* frame){
     int ret = 0;
     if (!frame)
         return;
+    printf("Send frame %3"PRId64"\n", frame->pts);
     if (!enc_frame)
     {
         enc_frame = av_frame_alloc();
