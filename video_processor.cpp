@@ -2,19 +2,22 @@
 
 int VideoProcessor::run(){
     AVFrame *frame;
-    while(frame = reader.nextFrame())
-    {
-        cout<<"processing"<<endl;
+    try{
+        while(frame = reader.nextFrame())
+        {
+            cout<<"processing"<<endl;
 
-        cv::Mat img = cv::Mat(frame->height, frame->width,
-            CV_8UC3, frame->data[0], frame->linesize[0]);
-        input_img_writer.save(img);
-        auto v = detector.detect(img);
-        painter.blur(v, img);
-        blured_img_writer.save(img);
-        writer.write(frame);
+            cv::Mat img = cv::Mat(frame->height, frame->width,
+                CV_8UC3, frame->data[0], frame->linesize[0]);
+            input_img_writer.save(img);
+            auto v = detector.detect(img);
+            painter.blur(v, img);
+            blured_img_writer.save(img);
+            writer.write(frame);
+        }
+    } catch(Exception& e){
+        cout<<e.what()<<endl;
     }
-
     cout<<"processing got NULL "<<endl;
     return 0; 
 };
