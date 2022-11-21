@@ -31,7 +31,7 @@ try :
     input_img_writer(dump_input, "input"),
     blured_img_writer(dump_blured, "blured")
 {
-    
+    writer.init(reader.getCodecCtx());   
 }
 catch(Exception& e) {
     cout<<e.what()<<endl;
