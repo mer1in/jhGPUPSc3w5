@@ -1,7 +1,7 @@
 #include "video_writer.hpp"
 #define err(MSG) throw(Exception(string("VideoWriter: ")+MSG))
 
-void VideoWriter::write(cv::Mat img){
+void VideoWriter::write(AVFrame* frame){
     int ret = 0;
     if (!frame)
         return;

@@ -12,7 +12,7 @@ class VideoWriter {
     public:
         VideoWriter(string file_name);
         void init(AVCodecContext* dec_ctx, AVFrame* frame);
-        void write(cv::Mat img);
+        void write(AVFrame* frame);
     private:
         string file_name;
         AVPacket *pkt_enc = NULL;
