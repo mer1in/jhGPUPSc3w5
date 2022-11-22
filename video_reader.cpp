@@ -13,13 +13,6 @@ VideoReader::VideoReader(std::string file_name) {
     if (avformat_find_stream_info(fmt_ctx, NULL) < 0)
         err("Could not find stream information");
     
-    /*
-     * XXX: move to writer
-    AVCodec *codec;
-    if (!(codec = avcodec_find_encoder_by_name("libx264")))
-        err("Codec libx264 not found");
-    */
-
     if((stream_idx = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
         err("Could not find "+media_type+" stream in input file");
     
