@@ -6,6 +6,10 @@ This is the week 5 project of the [Course 3 of 4 in the GPU Programming Speciali
 
 Blur faces in videostream
 
+| Source Video | Blured Faces Video |
+:-------------------------:|:-------------------------:
+![src](out/F01-input-12.jpg)  |  ![dst](out/F01-blured-12.jpg)
+
 ## Quick start
 
 `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
