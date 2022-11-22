@@ -15,7 +15,7 @@ mv $PROJ ..
 
 for file_name in F01 F02
 do
-    ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4 --dump-blured
+    ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4 --dump-blured --dump-input
 done
 
 cp -r out/* ~/project/out/
