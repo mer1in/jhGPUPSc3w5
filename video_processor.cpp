@@ -5,8 +5,6 @@ int VideoProcessor::run(){
     try{
         while(frame = reader.nextFrame())
         {
-            cout<<"processing"<<endl;
-
             cv::Mat img = cv::Mat(frame->height, frame->width,
                 CV_8UC3, frame->data[0], frame->linesize[0]);
             input_img_writer.save(img);
@@ -18,7 +16,6 @@ int VideoProcessor::run(){
     } catch(Exception& e){
         cout<<e.what()<<endl;
     }
-    cout<<"processing got NULL "<<endl;
     return 0; 
 };
 
