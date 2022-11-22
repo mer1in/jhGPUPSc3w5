@@ -10,7 +10,6 @@ do
     then
         echo "Got changes, rebuild"
         chsum1=$chsum2
-        echo $WHAT
         (echo "$WHAT" | bash -)
         echo $chsum1
     fi
