@@ -20,7 +20,6 @@ void Blurer::blur(std::vector<cv::Rect> faces, cv::Mat img)
 
         NppiSize isize = {r.width, r.height};
         Npp8u *face_addr = dev_mem + (r.y * width * 3 + r.x * 3);
-        printf("face_addr x = %d y = %d\n", r.x, r.y);
         nppiFilterGauss_8u_C3R(face_addr, width*3, face_addr, width*3, isize, NPP_MASK_SIZE_15_X_15);
 
     }
