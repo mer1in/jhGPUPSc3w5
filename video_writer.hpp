@@ -1,6 +1,7 @@
 #include <string>
 #include <opencv2/opencv.hpp> 
 #include "exception.hpp"
+
 extern "C" {
 #include <libavutil/opt.h>
 #include <libavcodec/avcodec.h>
