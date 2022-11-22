@@ -56,25 +56,19 @@ AVFrame* VideoReader::nextFrame()
 {
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
         if (pkt->stream_index != stream_idx)
-        {
-            fprintf(stderr, "skip non video stream\n");
             continue;
-        }
+
         int ret = avcodec_send_packet(dec_ctx, pkt); 
         if (ret < 0)
-        {
-            fprintf(stderr, "Error submitting a packet for decoding (%i)\n", ret);
-            return NULL;
-        }
+            err("Error submitting a packet for decoding");
+
         ret = avcodec_receive_frame(dec_ctx, frame);
         if (ret < 0)
         {
             if (ret == AVERROR_EOF || ret == AVERROR(EAGAIN))
                 continue;
-            fprintf(stderr, "Error during decoding (%i)\n", ret);
-            return NULL;
+            err("Error during decoding");
         }
-        fprintf(stderr, "alles gut, return frame\n");
         
         int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
             frame->data,            //const uint8_t* const srcSlice[],
@@ -86,7 +80,6 @@ AVFrame* VideoReader::nextFrame()
 
         return pBGRFrame;
     }
-    fprintf(stderr, "alles gut, no more frames\n");
     return NULL;
 }
 
@@ -95,5 +88,4 @@ VideoReader::~VideoReader() {
     avformat_close_input(&fmt_ctx);
     av_packet_free(&pkt);
     av_frame_free(&frame);
-    printf("Bye\n");
 }
