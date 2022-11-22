@@ -5,11 +5,8 @@ void VideoWriter::write(AVFrame* frame){
     int ret = 0;
     if (!frame)
         return;
-    printf("Send frame %3"PRId64"\n", frame->pts);
 
-    cout<<"sws scale"<<endl;
     sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, enc_frame->linesize);
-    cout<<"sws scale done"<<endl;
 
     if (avcodec_send_frame(ctx, enc_frame) < 0)
         err("Error sending a frame for encoding");
@@ -22,7 +19,6 @@ void VideoWriter::write(AVFrame* frame){
             err( "Error during encoding\n");
         fwrite(pkt->data, 1, pkt->size, file);
         av_packet_unref(pkt);
-        printf("Write packet %3"PRId64" (size=%5d)\n", pkt->pts, pkt->size);
     }
 }
 
