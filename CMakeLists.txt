@@ -37,3 +37,7 @@ target_link_libraries(${project} ${AVDEVICE_LIBRARIES} ${AVFILTER_LIBRARIES}
     ${LIBX264}
     pthread opencv_core opencv_imgcodecs opencv_dnn
     opencv_imgproc z lzma)
+
+# tbd: nvpp
+#set(CUDAToolkit_ROOT "${CMAKE_BINARY_DIR}/extracted/cuda")
+#find_package(CUDAToolkit)
