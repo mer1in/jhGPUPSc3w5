@@ -29,6 +29,7 @@ try :
     blured_img_writer(dump_blured, "blured")
 {
     writer.init(reader.getCodecCtx(), reader.getCleanFrame());
+    av_log_set_level(AV_LOG_FATAL);
 }
 catch(Exception& e) {
     cout<<e.what()<<endl;
