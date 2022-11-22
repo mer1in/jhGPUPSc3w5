@@ -16,7 +16,7 @@ void VideoWriter::write(AVFrame* frame){
         if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
             return;
         else if (ret < 0)
-            err( "Error during encoding\n");
+            err( "Error during encoding");
         fwrite(pkt->data, 1, pkt->size, file);
         av_packet_unref(pkt);
     }
