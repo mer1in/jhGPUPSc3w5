@@ -52,7 +52,6 @@ VideoReader::VideoReader(std::string file_name) {
 
 }
 
-
 AVFrame* VideoReader::nextFrame()
 {
     while (av_read_frame(fmt_ctx, pkt) >= 0) {
