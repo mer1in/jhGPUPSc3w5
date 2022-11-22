@@ -9,7 +9,6 @@ using namespace std;
 class VideoProcessor {
     public:
         VideoProcessor(string src_filename, string dst_filename, string dump_input, string dump_blured);
-        ~VideoProcessor();
         int run();
     private:
         VideoReader reader;

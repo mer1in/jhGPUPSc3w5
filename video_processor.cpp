@@ -34,7 +34,3 @@ try :
 catch(Exception& e) {
     cout<<e.what()<<endl;
 }
-
-VideoProcessor::~VideoProcessor()
-{
-}
