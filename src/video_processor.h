@@ -1,3 +1,6 @@
+#ifndef VIDEO_PROCESSOR_H_
+#define VIDEO_PROCESSOR_H_
+
 #include "video_reader.hpp"
 #include "video_writer.hpp"
 #include "face_detector.hpp"
@@ -20,3 +23,5 @@ class VideoProcessor {
         ImgWriter input_img_writer;
         ImgWriter blured_img_writer;
 };
+
+#endif // VIDEO_PROCESSOR_H_

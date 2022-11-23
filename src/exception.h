@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EXCEPTION_H_
+#define EXCEPTION_H_
 #include <iostream>
 #include <string>
 
@@ -14,3 +15,4 @@ private:
    string msg_;
 };
 
+#endif // EXCEPTION_H_

@@ -1,4 +1,7 @@
-#pragma once
+
+#ifndef VIDEO_READER_H_
+#define VIDEO_READER_H_
+
 #include <string>
 #include "exception.hpp"
 
@@ -29,3 +32,5 @@ class VideoReader {
         AVPacket *pkt = NULL;
         SwsContext* sws_ctx = NULL;
 };
+
+#endif // VIDEO_READER_H_ 

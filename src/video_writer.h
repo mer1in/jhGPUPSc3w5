@@ -1,3 +1,6 @@
+#ifndef VIDEO_WRITER_H_
+#define VIDEO_WRITER_H_
+
 #include <string>
 #include <opencv2/opencv.hpp> 
 #include "exception.hpp"
@@ -24,3 +27,5 @@ class VideoWriter {
         SwsContext* sws_ctx = NULL;
         FILE *file = NULL;
 };
+
+#endif // VIDEO_WRITER_H_
