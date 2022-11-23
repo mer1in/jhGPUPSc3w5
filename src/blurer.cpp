@@ -1,4 +1,4 @@
-#include "blurer.hpp"
+#include "blurer.h"
 #define cudaCall(F) { \
     cudaError_t err = F; \
     if (err != cudaSuccess){ \

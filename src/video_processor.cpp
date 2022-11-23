@@ -1,4 +1,4 @@
-#include "video_processor.hpp"
+#include "video_processor.h"
 
 int VideoProcessor::run(){
     AVFrame *frame;

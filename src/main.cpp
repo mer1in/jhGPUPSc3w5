@@ -1,6 +1,5 @@
-//#include "decode.hpp"
 #include <sstream> 
-#include "video_processor.hpp"
+#include "video_processor.h"
 
 void usage(char* name)
 {

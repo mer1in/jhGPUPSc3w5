@@ -1,4 +1,4 @@
-#include "face_detector.hpp"
+#include "face_detector.h"
 
 FaceDetector::FaceDetector() :
     confidence_threshold_(0.5),

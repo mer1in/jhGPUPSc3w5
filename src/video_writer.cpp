@@ -1,4 +1,4 @@
-#include "video_writer.hpp"
+#include "video_writer.h"
 #define err(MSG) throw(Exception(string("VideoWriter: ")+MSG))
 
 void VideoWriter::write(AVFrame* frame){

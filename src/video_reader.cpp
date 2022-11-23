@@ -1,4 +1,4 @@
-#include "video_reader.hpp"
+#include "video_reader.h"
 #define err(MSG) throw(Exception(string("VideoReader: ")+MSG))
 
 VideoReader::VideoReader(std::string file_name) {

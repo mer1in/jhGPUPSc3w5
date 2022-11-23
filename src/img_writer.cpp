@@ -1,4 +1,4 @@
-#include "img_writer.hpp"
+#include "img_writer.h"
 
 ImgWriter::ImgWriter(string input_file_name, string suffix)
 {
