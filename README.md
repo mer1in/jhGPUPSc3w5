@@ -1,5 +1,3 @@
-[__TOC__]
-
 # CUDA at Scale Independent Project
 
 This is the week 5 project of the [Course 3 of 4 in the GPU Programming Specialization by Johns Hopkins University](https://www.coursera.org/learn/cuda-at-scale-for-the-enterprise/home/info)
