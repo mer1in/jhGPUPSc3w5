@@ -31,10 +31,10 @@ Blur faces in videostream
 
 ### files
 
-- CMakeLists.txt - cmake build recipe
-- README.md - this file
-- init.sh - script to initialize build environment
-- monitor.sh - continuous integration, instantly watches for changes in repo and rebuilds if changed
+- [CMakeLists.txt](./CMakeLists.txt) - cmake build recipe
+- [README.md](./README.md) - this file
+- [init.sh](./init.sh) - script to initialize build environment
+- [monitor.sh](./monitor.sh) - continuous integration, instantly watches for changes in repo and rebuilds if changed
 - [run.sh](./run.sh) - build and run
 
 ## Prerequisites
