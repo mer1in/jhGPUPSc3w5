@@ -1,11 +1,11 @@
 #ifndef VIDEO_PROCESSOR_H_
 #define VIDEO_PROCESSOR_H_
 
-#include "video_reader.hpp"
-#include "video_writer.hpp"
-#include "face_detector.hpp"
-#include "blurer.hpp"
-#include "img_writer.hpp"
+#include "video_reader.h"
+#include "video_writer.h"
+#include "face_detector.h"
+#include "blurer.h"
+#include "img_writer.h"
 
 using namespace std;
 
