@@ -2,7 +2,7 @@
 
 This is the week 5 project of the [Course 3 of 4 in the GPU Programming Specialization by Johns Hopkins University](https://www.coursera.org/learn/cuda-at-scale-for-the-enterprise/home/info)
 
-## Description
+## Project Description
 
 Blur faces in videostream
 
@@ -13,6 +13,10 @@ Blur faces in videostream
 ## Quick start
 
 `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
+`./run.sh`
+
+## Code Organization
+
 
 ## Prerequisites
 
