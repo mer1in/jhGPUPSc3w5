@@ -11,7 +11,7 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-#include "exception.hpp"
+#include "exception.h"
 
 using namespace std;
 class VideoWriter {

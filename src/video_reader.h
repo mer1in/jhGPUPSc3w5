@@ -2,7 +2,7 @@
 #define VIDEO_READER_H_
 
 #include <string>
-#include "exception.hpp"
+#include "exception.h"
 
 extern "C" {
 #include <libavutil/opt.h>

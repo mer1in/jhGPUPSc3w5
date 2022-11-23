@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp> 
 #include <string>
 #include <npp.h>
-#include "exception.hpp"
+#include "exception.h"
 
 class Blurer {
     public:
