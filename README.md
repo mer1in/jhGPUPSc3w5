@@ -22,7 +22,8 @@ sequenceDiagram
 participant VideoFile
 VideoFile ->> VideoReader: Encoded video stream
 VideoReader ->> FaceDetector: Stream of Frames
-FaceDetector ->> Painter: Frames Stream, Vectors of Faces
+FaceDetector ->> Painter: Frames Stream
+FaceDetector ->> Painter: Vectors of Faces
 Painter ->> VideoWriter: Blured Frames Stream
 VideoWriter ->> OutputVideoFile: Encoded Videostream
 note over VideoReader: Decode Video
@@ -65,3 +66,4 @@ note over VideoWriter: Encode Video
  ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 - [npp documentation](https://docs.nvidia.com/cuda/npp/index.html)
 - [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
+- https://opencv.org/
