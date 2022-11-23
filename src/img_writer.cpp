@@ -1,13 +1,13 @@
 #include "img_writer.h"
 
-ImgWriter::ImgWriter(string input_file_name, string suffix)
+ImgWriter::ImgWriter(string inputFileName, string suffix)
 {
-    if (!input_file_name.length())
+    if (!inputFileName.length())
         return;
-    size_t pos = input_file_name.find('.');
+    size_t pos = inputFileName.find('.');
     if (pos == string::npos)
-        pos = input_file_name.length() - 1;
-    file_name = input_file_name.substr(0, pos) + "-" +suffix + "-";
+        pos = inputFileName.length() - 1;
+    fileName = inputFileName.substr(0, pos) + "-" +suffix + "-";
     enabled = true;
 }
 
@@ -15,6 +15,6 @@ void ImgWriter::save(cv::Mat img)
 {
     if(!enabled)
         return;
-    string fn = file_name + to_string(num++) + ".jpg";
+    string fn = fileName + to_string(num++) + ".jpg";
     cv::imwrite(fn.c_str(), img);
 }
