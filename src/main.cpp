@@ -7,8 +7,8 @@ void usage(char* name)
         "This program searchs for faces in input video and blurs them\n"
         "  input_file     video file to be processed, required\n"
         "  output_file    name of a file to write results to, required\n"
-        "  --dump-input   write each input frame to a file named <output_file>-input-<frame-number>.jpg"
-        "  --dump-blured  write each blured frame to a file named <output_file>-blured-<frame-number>.jpg",
+        "  --dump-input   write each input frame to a file named <output_file>-input-<frame-number>.jpg\n"
+        "  --dump-blured  write each blured frame to a file named <output_file>-blured-<frame-number>.jpg\n",
         name);
     exit(1);
 }
