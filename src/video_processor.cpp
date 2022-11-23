@@ -6,7 +6,7 @@ int VideoProcessor::run(){
     try{
         while(frame = reader.nextFrame())
         {
-            if (i++ % 10 == 0)
+            if (count++ % 10 == 0)
                 cout<<".";
             cv::Mat img = cv::Mat(frame->height, frame->width,
                 CV_8UC3, frame->data[0], frame->linesize[0]);
