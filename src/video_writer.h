@@ -3,7 +3,6 @@
 
 #include <string>
 #include <opencv2/opencv.hpp> 
-#include "exception.hpp"
 
 extern "C" {
 #include <libavutil/opt.h>
@@ -11,6 +10,8 @@ extern "C" {
 #include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
 }
+
+#include "exception.hpp"
 
 using namespace std;
 class VideoWriter {

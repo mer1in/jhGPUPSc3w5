@@ -1,4 +1,3 @@
-
 #ifndef VIDEO_READER_H_
 #define VIDEO_READER_H_
 
