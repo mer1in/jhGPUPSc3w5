@@ -29,7 +29,7 @@ class VideoReader {
         AVFrame *frame = NULL;
         AVFrame *pBGRFrame = NULL;
         AVPacket *pkt = NULL;
-        SwsContext* sws_ctx = NULL;
+        SwsContext* swsCtx = NULL;
 };
 
 #endif // VIDEO_READER_H_ 
