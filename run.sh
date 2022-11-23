@@ -2,8 +2,6 @@
 
 PROJ=videoHideFaces
 rm $PROJ
-[ -d out ] || mkdir out
-rm out/*
 
 (
 [ -d build ] || mkdir build
