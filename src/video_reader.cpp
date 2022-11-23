@@ -8,16 +8,16 @@ VideoReader::VideoReader(std::string fileName) {
     const AVStream *st;
     av_log_set_level(AV_LOG_FATAL);
 
-    if (avformat_open_input(&fmt_ctx, fileName.c_str(), NULL, NULL) < 0)
+    if (avformat_open_input(&fmtCtx, fileName.c_str(), NULL, NULL) < 0)
         err("Could not open source file " + fileName);
 
-    if (avformat_find_stream_info(fmt_ctx, NULL) < 0)
+    if (avformat_find_stream_info(fmtCtx, NULL) < 0)
         err("Could not find stream information");
     
-    if((stream_idx = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
+    if((stream_idx = av_find_best_stream(fmtCtx, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0)) < 0)
         err("Could not find "+media_type+" stream in input file");
     
-    st = fmt_ctx->streams[stream_idx];
+    st = fmtCtx->streams[stream_idx];
     if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
         err("Failed to find "+media_type+" codec");
                     
@@ -31,7 +31,7 @@ VideoReader::VideoReader(std::string fileName) {
     if (avcodec_open2(dec_ctx, dec, NULL) < 0)
         err("Failed to open "+media_type+" codec");
 
-    if (!(video_stream = fmt_ctx->streams[stream_idx]))
+    if (!(video_stream = fmtCtx->streams[stream_idx]))
         err("Could not find video stream in the input, aborting");
 
     if (!(frame = av_frame_alloc()))
@@ -55,7 +55,7 @@ VideoReader::VideoReader(std::string fileName) {
 
 AVFrame* VideoReader::nextFrame()
 {
-    while (av_read_frame(fmt_ctx, pkt) >= 0) {
+    while (av_read_frame(fmtCtx, pkt) >= 0) {
         if (pkt->stream_index != stream_idx)
             continue;
 
@@ -86,7 +86,7 @@ AVFrame* VideoReader::nextFrame()
 
 VideoReader::~VideoReader() {
     avcodec_free_context(&dec_ctx);
-    avformat_close_input(&fmt_ctx);
+    avformat_close_input(&fmtCtx);
     av_packet_free(&pkt);
     av_frame_free(&frame);
 }
