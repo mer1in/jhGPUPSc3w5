@@ -12,8 +12,25 @@ Blur faces in videostream
 
 ## Quick start
 
-`git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
-`./run.sh`
+- `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
+- `./run.sh`
+
+## Flow explained
+
+``` sequence {theme="hand"}
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+```
+
+
+``` mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ff0000'}}}%%
+sequenceDiagram 
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+
+```
 
 ## Code Organization
 
@@ -33,7 +50,7 @@ Blur faces in videostream
 
 - [CMakeLists.txt](./CMakeLists.txt) - cmake build recipe
 - [README.md](./README.md) - this file
-- [init.sh](./init.sh) - script to initialize build environment
+- [init.sh](./init.sh) - script to initialize build environment, runs ~30 minutes
 - [monitor.sh](./monitor.sh) - simple CI script, instantly watches for changes in repo and rebuilds if changed
 - [run.sh](./run.sh) - build and run
 
@@ -49,4 +66,3 @@ Blur faces in videostream
  ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
 - [npp documentation](https://docs.nvidia.com/cuda/npp/index.html)
 - [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
-
