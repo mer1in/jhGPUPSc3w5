@@ -6,9 +6,9 @@ void VideoWriter::write(AVFrame* frame){
     if (!frame)
         return;
 
-    sws_scale(sws_ctx, frame->data, frame->linesize, 0, frame->height, enc_frame->data, enc_frame->linesize);
+    sws_scale(swsCtx, frame->data, frame->linesize, 0, frame->height, encFrame->data, encFrame->linesize);
 
-    if (avcodec_send_frame(ctx, enc_frame) < 0)
+    if (avcodec_send_frame(ctx, encFrame) < 0)
         err("Error sending a frame for encoding");
 
     while (ret >= 0) {
@@ -22,7 +22,7 @@ void VideoWriter::write(AVFrame* frame){
     }
 }
 
-VideoWriter::VideoWriter(string file_name) : file_name(file_name)
+VideoWriter::VideoWriter(string fileName) : fileName(fileName)
 {
     pkt = av_packet_alloc();
     if (!pkt)
@@ -35,27 +35,27 @@ VideoWriter::VideoWriter(string file_name) : file_name(file_name)
         err("Could not allocate video codec context");
 };
 
-void VideoWriter::init(AVCodecContext* dec_ctx, AVFrame* frame)
+void VideoWriter::init(AVCodecContext* decCtx, AVFrame* frame)
 {
-    ctx->bit_rate = dec_ctx->bit_rate;
-    ctx->width = dec_ctx->width;
-    ctx->height = dec_ctx->height;
+    ctx->bit_rate = decCtx->bit_rate;
+    ctx->width = decCtx->width;
+    ctx->height = decCtx->height;
     ctx->time_base = (AVRational){1, 25};
-    ctx->framerate = dec_ctx->framerate;
-    ctx->max_b_frames = dec_ctx->max_b_frames;
+    ctx->framerate = decCtx->framerate;
+    ctx->max_b_frames = decCtx->max_b_frames;
     ctx->pix_fmt = AV_PIX_FMT_YUV420P;
     av_opt_set(ctx->priv_data, "preset", "slow", 0);
 
     if (avcodec_open2(ctx, codec, NULL) < 0)
         err("Could not open codec");
 
-    sws_ctx = sws_getContext(dec_ctx->width, dec_ctx->height, AV_PIX_FMT_BGR24, dec_ctx->width,
-         dec_ctx->height, AV_PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
-    if(!sws_ctx)
+    swsCtx = sws_getContext(decCtx->width, decCtx->height, AV_PIX_FMT_BGR24, decCtx->width,
+         decCtx->height, AV_PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
+    if(!swsCtx)
         err("Cannot create sws ctx");
 
-    if (!(file = fopen(file_name.c_str(), "wb")))
-        err("Could not open "+file_name);
+    if (!(file = fopen(fileName.c_str(), "wb")))
+        err("Could not open "+fileName);
 
-    enc_frame = frame;
+    encFrame = frame;
 }
