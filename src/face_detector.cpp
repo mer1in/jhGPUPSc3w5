@@ -1,14 +1,14 @@
 #include "face_detector.h"
 
 FaceDetector::FaceDetector() :
-    confidence_threshold_(0.5),
-    input_image_height_(300),
-    input_image_width_(300),
-    scale_factor_(1.0),
-    mean_values_({104., 177.0, 123.0})
+    confidenceThreshold(0.5),
+    inputImageHeight(300),
+    inputImageWidth(300),
+    scaleFactor(1.0),
+    meanValues({104., 177.0, 123.0})
 {
-    network_ = cv::dnn::readNetFromCaffe(FACE_DETECTION_CONFIGURATION, FACE_DETECTION_WEIGHTS);
-    if (network_.empty()) {
+    network = cv::dnn::readNetFromCaffe(FACE_DETECTION_CONFIGURATION, FACE_DETECTION_WEIGHTS);
+    if (network.empty()) {
         std::ostringstream ss;
         ss << "Failed to load network with the following settings:\n"
             << "Configuration: " + std::string(FACE_DETECTION_CONFIGURATION) + "\n"            
@@ -31,7 +31,7 @@ std::vector<cv::Rect> FaceDetector::detect(const cv::Mat &frame)
     for (int i = 0; i < detection_matrix.rows; i++)
     {
         float confidence = detection_matrix.at<float>(i, 2);
-        if (confidence < confidence_threshold_)
+        if (confidence < confidenceThreshold)
             continue;
         
         int x_left_bottom = static_cast<int>(
