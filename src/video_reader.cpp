@@ -21,14 +21,14 @@ VideoReader::VideoReader(std::string fileName) {
     if(!(dec = avcodec_find_decoder(st->codecpar->codec_id)))
         err("Failed to find "+media_type+" codec");
                     
-    dec_ctx = avcodec_alloc_context3(dec);
-    if (!dec_ctx)
+    decCtx = avcodec_alloc_context3(dec);
+    if (!decCtx)
         err("Failed to allocate the "+av_get_media_type_string(AVMEDIA_TYPE_VIDEO)+" codec context");
 
-    if (avcodec_parameters_to_context(dec_ctx, st->codecpar) < 0)
+    if (avcodec_parameters_to_context(decCtx, st->codecpar) < 0)
         err("Failed to copy "+media_type+" codec parameters to decoder ctx");
 
-    if (avcodec_open2(dec_ctx, dec, NULL) < 0)
+    if (avcodec_open2(decCtx, dec, NULL) < 0)
         err("Failed to open "+media_type+" codec");
 
     if (!(videoStream = fmtCtx->streams[stream_idx]))
@@ -40,16 +40,16 @@ VideoReader::VideoReader(std::string fileName) {
     if (!(pBGRFrame = av_frame_alloc()))
         err("Could not allocate BGR frame");
     pBGRFrame->format = AV_PIX_FMT_BGR24;
-    pBGRFrame->width = dec_ctx->width;
-    pBGRFrame->height = dec_ctx->height;
+    pBGRFrame->width = decCtx->width;
+    pBGRFrame->height = decCtx->height;
     if (av_frame_get_buffer(pBGRFrame, 0) < 0)
         err("Cannot allocate pBGRFrame frame buffer");
 
     if (!(pkt = av_packet_alloc()))
         err("Couldn't allocate packet");
 
-    sws_ctx = sws_getContext(dec_ctx->width, dec_ctx->height, dec_ctx->pix_fmt, dec_ctx->width,
-         dec_ctx->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
+    sws_ctx = sws_getContext(decCtx->width, decCtx->height, decCtx->pix_fmt, decCtx->width,
+         decCtx->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
 }
 
@@ -59,11 +59,11 @@ AVFrame* VideoReader::nextFrame()
         if (pkt->stream_index != stream_idx)
             continue;
 
-        int ret = avcodec_send_packet(dec_ctx, pkt); 
+        int ret = avcodec_send_packet(decCtx, pkt); 
         if (ret < 0)
             err("Error submitting a packet for decoding");
 
-        ret = avcodec_receive_frame(dec_ctx, frame);
+        ret = avcodec_receive_frame(decCtx, frame);
         if (ret < 0)
         {
             if (ret == AVERROR_EOF || ret == AVERROR(EAGAIN))
@@ -85,7 +85,7 @@ AVFrame* VideoReader::nextFrame()
 }
 
 VideoReader::~VideoReader() {
-    avcodec_free_context(&dec_ctx);
+    avcodec_free_context(&decCtx);
     avformat_close_input(&fmtCtx);
     av_packet_free(&pkt);
     av_frame_free(&frame);
