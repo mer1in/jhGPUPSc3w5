@@ -27,7 +27,7 @@ FaceDetector ->> Painter: Vectors of Faces
 Painter ->> VideoWriter: Blured Frames Stream
 VideoWriter ->> OutputVideoFile: Encoded Videostream
 note over VideoReader: Decode Video
-note over FaceDetector: Detect Faces using DNNs
+note over FaceDetector: Detect Faces using OpenCV
 note over Painter: Call NPP to blur faces
 note over VideoWriter: Encode Video
 ```
@@ -61,6 +61,7 @@ note over VideoWriter: Encode Video
 ## Dependencies / third party components / RTFMs
 
 - [ffmpeg](https://www.ffmpeg.org/) included as submodule, this dependency is built by `init.sh` script
+  - [libx264](https://code.videolan.org/videolan/x264)
   - [hints in building ffmpeg](https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu)
 - video/\* samples were taken from <a target="_blank" href="http://www.videezy.com/">Free Stock Videos by Videezy</a>  and downscaled with\
  ```for f in `ls|grep mp4`; do ffmpeg -i $f -vf scale=480:-1 video/$f ; done```
