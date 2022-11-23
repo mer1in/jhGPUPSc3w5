@@ -19,7 +19,6 @@ FaceDetector::FaceDetector() :
 
 std::vector<cv::Rect> FaceDetector::detect(const cv::Mat &frame)
 {
-    int failc = 1;
     cv::Mat input_blob = cv::dnn::blobFromImage(frame, scale_factor_,
         cv::Size(input_image_width_, input_image_height_), mean_values_,
         false, false);
