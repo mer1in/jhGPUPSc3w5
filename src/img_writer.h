@@ -8,11 +8,11 @@ using namespace std;
 
 class ImgWriter {
     private:
-        string file_name;
+        string fileName;
         int num = 1;
         bool enabled = false;
     public:
-        ImgWriter(string input_file_name, string suffix);
+        ImgWriter(string inputFileName, string suffix);
         ~ImgWriter(){}
         void save(cv::Mat img);
 };
