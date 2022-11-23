@@ -18,10 +18,10 @@ class VideoProcessor {
         VideoWriter writer;
         FaceDetector detector;
         Blurer painter;
-        string src_filename;
+        string srcFilename;
         string dst_filename;
-        ImgWriter input_img_writer;
-        ImgWriter blured_img_writer;
+        ImgWriter inputImgWriter;
+        ImgWriter bluredImgWriter;
 };
 
 #endif // VIDEO_PROCESSOR_H_
