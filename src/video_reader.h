@@ -19,13 +19,13 @@ class VideoReader {
         VideoReader(std::string file_name);
         ~VideoReader();
         AVFrame* nextFrame();
-        AVCodecContext* getCodecCtx(){return dec_ctx;}
+        AVCodecContext* getCodecCtx(){return decCtx;}
         AVFrame* getCleanFrame(){return frame;}
     private:
         AVFormatContext *fmtCtx = NULL;
         AVStream *videoStream;
-        AVCodecContext *dec_ctx = NULL;
-        int stream_idx = -1;
+        AVCodecContext *decCtx = NULL;
+        int streamIdx = -1;
         AVFrame *frame = NULL;
         AVFrame *pBGRFrame = NULL;
         AVPacket *pkt = NULL;
