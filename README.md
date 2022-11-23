@@ -36,7 +36,7 @@ note over VideoWriter: Encode Video
 ### folders
 
 - src - sources
-- opencv - openCV Library. Included as a submodule
+- opencv - openCV Library, included as a submodule
 - opencv_contrib - openCV extra modules, submodule
 - ffmpeg - video manipulation framework, submodule
 - x264 - libx264 encoder library, submodule
