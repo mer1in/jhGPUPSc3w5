@@ -17,6 +17,25 @@ Blur faces in videostream
 
 ## Code Organization
 
+### folders
+
+- src - sources
+- opencv - openCV Library. Included as a submodule
+- opencv_contrib - openCV extra modules, submodule
+- ffmpeg - video manipulation framework, submodule
+- x264 - libx264 encoder library, submodule
+- assets - face detection DNNs
+- video - video sources
+- out - example results of the program
+- cmake - cmake routines required for build
+
+### files
+
+- CMakeLists.txt - cmake build recipe
+- README.md - this file
+- init.sh - script to initialize build environment
+- monitor.sh - continuous integration, instantly watches for changes in repo and rebuilds if changed
+- [run.sh](./run.sh) - build and run
 
 ## Prerequisites
 
