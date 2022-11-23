@@ -1,15 +1,15 @@
 #include "video_reader.h"
 #define err(MSG) throw(Exception(string("VideoReader: ")+MSG))
 
-VideoReader::VideoReader(std::string file_name) {
+VideoReader::VideoReader(std::string fileName) {
 
     string media_type = av_get_media_type_string(AVMEDIA_TYPE_VIDEO);
     const AVCodec *dec = NULL;
     const AVStream *st;
     av_log_set_level(AV_LOG_FATAL);
 
-    if (avformat_open_input(&fmt_ctx, file_name.c_str(), NULL, NULL) < 0)
-        err("Could not open source file " + file_name);
+    if (avformat_open_input(&fmt_ctx, fileName.c_str(), NULL, NULL) < 0)
+        err("Could not open source file " + fileName);
 
     if (avformat_find_stream_info(fmt_ctx, NULL) < 0)
         err("Could not find stream information");
