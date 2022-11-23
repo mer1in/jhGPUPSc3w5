@@ -4,6 +4,7 @@ WHAT='./run.sh'
 
 while [[ true ]]
 do
+    git checkout -- .
     git pull -r &>/dev/null
     chsum2=`git log -1 --oneline`
     if [[ $chsum1 != $chsum2 ]]
