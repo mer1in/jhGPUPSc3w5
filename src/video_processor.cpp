@@ -7,10 +7,10 @@ int VideoProcessor::run(){
         {
             cv::Mat img = cv::Mat(frame->height, frame->width,
                 CV_8UC3, frame->data[0], frame->linesize[0]);
-            input_img_writer.save(img);
+            inputImgWriter.save(img);
             auto v = detector.detect(img);
             painter.blur(v, img);
-            blured_img_writer.save(img);
+            bluredImgWriter.save(img);
             writer.write(frame);
         }
     } catch(Exception& e){
@@ -19,14 +19,14 @@ int VideoProcessor::run(){
     return 0; 
 };
 
-VideoProcessor::VideoProcessor(string src_filename, string dst_filename, string dump_input, string dump_blured)
+VideoProcessor::VideoProcessor(string srcFilename, string dstFilename, string dumpInput, string dumpBlured)
 try :
-    src_filename(src_filename),
-    dst_filename(dst_filename),
-    reader(src_filename),
-    writer(dst_filename),
-    input_img_writer(dump_input, "input"),
-    blured_img_writer(dump_blured, "blured")
+    srcFilename(srcFilename),
+    dstFilename(dstFilename),
+    reader(srcFilename),
+    writer(dstFilename),
+    inputImgWriter(dumpInput, "input"),
+    bluredImgWriter(dumpBlured, "blured")
 {
     av_log_set_level(AV_LOG_FATAL);
     writer.init(reader.getCodecCtx(), reader.getCleanFrame());
