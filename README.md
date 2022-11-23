@@ -1,3 +1,5 @@
+[_TOC_]
+
 # CUDA at Scale Independent Project
 
 This is the week 5 project of the [Course 3 of 4 in the GPU Programming Specialization by Johns Hopkins University](https://www.coursera.org/learn/cuda-at-scale-for-the-enterprise/home/info)
@@ -17,19 +19,18 @@ Blur faces in videostream
 
 ## Flow explained
 
-``` sequence {theme="hand"}
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-```
-
-
 ``` mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ff0000'}}}%%
 sequenceDiagram 
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-
+participant VideoFile
+VideoFile ->> VideoReader: Encoded video stream
+VideoReader ->> FaceDetector: Stream of Frames
+FaceDetector ->> Painter: Frames Stream, Vectors of Faces
+Painter ->> VideoWriter: Blured Frames Stream
+VideoWriter ->> OutputVideoFile: Encoded Videostream
+note over VideoReader: Decode Video
+note over FaceDetector: Detect Faces using DNNs
+note over Painter: Call NPP to blur faces
+note over VideoWriter: Encode Video
 ```
 
 ## Code Organization
