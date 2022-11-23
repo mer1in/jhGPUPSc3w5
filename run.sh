@@ -18,6 +18,3 @@ do
     ./${PROJ} video/${file_name}.mp4 out/${file_name}.mp4 --dump-blured --dump-input
 done
 
-cp -r out/* ~/project/out/
-cp out/*.mp4 ~/coursera/
-ls -l ~/coursera/
