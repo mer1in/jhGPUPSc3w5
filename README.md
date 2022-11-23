@@ -15,9 +15,9 @@ Blur faces in videostream
 - `git clone https://github.com/mer1in/jhGPUPSc3w5.git && cd jhGPUPSc3w5 && ./init.sh`
 - `./run.sh`
 
-The `init.sh` script sets up all dependencies and builds required library.
+The `init.sh` script sets up all ./dependencies and builds required library.
 
-The `run.sh` compiles and links the actual application and runs it with video files from **/video/** folder. Results can be found in **/out/** directory
+The `run.sh` compiles and links the actual application and runs it with video files from **./video/** folder. Results can be found in **./out/** directory
 
 Execution was tested on [the machine provided in the laboratory](https://www.coursera.org/learn/cuda-at-scale-for-the-enterprise/ungradedLab/8cJV3/npp-box-filter-laboratory/lab)
 
