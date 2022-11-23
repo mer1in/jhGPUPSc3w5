@@ -5,7 +5,7 @@ project($project})
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(Common)
-add_sources(src/*.cpp src/*.hpp)
+add_sources(src/*.cpp src/*.h)
 ADD_EXECUTABLE(${project} ${SOURCES})
 
 set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libraries/lib/cmake/opencv4/)
