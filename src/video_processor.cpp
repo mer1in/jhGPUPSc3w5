@@ -2,12 +2,9 @@
 
 int VideoProcessor::run(){
     AVFrame *frame;
-    int count = 0;
     try{
         while(frame = reader.nextFrame())
         {
-            if (i++ % 10 == 0)
-                cout<<".";
             cv::Mat img = cv::Mat(frame->height, frame->width,
                 CV_8UC3, frame->data[0], frame->linesize[0]);
             input_img_writer.save(img);
@@ -16,7 +13,6 @@ int VideoProcessor::run(){
             blured_img_writer.save(img);
             writer.write(frame);
         }
-        cout<<endl;
     } catch(Exception& e){
         cout<<e.what()<<endl;
     }
