@@ -16,16 +16,16 @@ extern "C" {
 using namespace std;
 class VideoWriter {
     public:
-        VideoWriter(string file_name);
-        void init(AVCodecContext* dec_ctx, AVFrame* frame);
+        VideoWriter(string fileName);
+        void init(AVCodecContext* decCtx, AVFrame* frame);
         void write(AVFrame* frame);
     private:
-        string file_name;
-        AVFrame *enc_frame = NULL;
+        string fileName;
+        AVFrame *encFrame = NULL;
         AVCodec *codec;
         AVPacket *pkt = NULL;
         AVCodecContext *ctx = NULL;
-        SwsContext* sws_ctx = NULL;
+        SwsContext* swsCtx = NULL;
         FILE *file = NULL;
 };
 
