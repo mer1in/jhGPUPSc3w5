@@ -19,7 +19,7 @@ class VideoProcessor {
         FaceDetector detector;
         Blurer painter;
         string srcFilename;
-        string dst_filename;
+        string dstFilename;
         ImgWriter inputImgWriter;
         ImgWriter bluredImgWriter;
 };
