@@ -6,7 +6,7 @@ This is the week 5 project of the [Course 3 of 4 in the GPU Programming Speciali
 
 Blur faces in videostream
 
-| Source Video | Blured Faces Video |
+| Source Video Frame | Video Frame with Blured Faces |
 :-------------------------:|:-------------------------:
 ![src](out/F01-input-12.jpg)  |  ![dst](out/F01-blured-12.jpg)
 
@@ -34,7 +34,7 @@ Blur faces in videostream
 - [CMakeLists.txt](./CMakeLists.txt) - cmake build recipe
 - [README.md](./README.md) - this file
 - [init.sh](./init.sh) - script to initialize build environment
-- [monitor.sh](./monitor.sh) - continuous integration, instantly watches for changes in repo and rebuilds if changed
+- [monitor.sh](./monitor.sh) - simple CI script, instantly watches for changes in repo and rebuilds if changed
 - [run.sh](./run.sh) - build and run
 
 ## Prerequisites
@@ -50,22 +50,3 @@ Blur faces in videostream
 - [npp documentation](https://docs.nvidia.com/cuda/npp/index.html)
 - [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
 
-## Steps/lib calls to use
-1. Blur = gauss filter
-
-TODO:
-- [x] ffmpeg
-  - [x] read mp4
-  - [x] write mp4
-    - [x] install libx264
-  - [ ] ~~Hello world: convert to grayscale~~
-- [x] build OpenCV
-- [x] get array of ROIs using net from [Building a face detector with OpenCV in C++](https://medium.com/analytics-vidhya/building-a-face-detector-with-opencv-in-c-8814cd374ea1)
-- [x] use cmake
-- [x] apply blur
-  - [x] npp sandbox
-    - [ ] ~~install npp~~
-- [ ] write stream
-  - [x] make it work with global vars
-  - [ ] rewrite with classes
-- [ ] documentation
