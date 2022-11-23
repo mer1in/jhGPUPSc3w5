@@ -29,6 +29,9 @@ Execution was tested on [the machine provided in the laboratory](https://www.cou
 - `--dump-input`   write each input frame to a file named **output_file**-input-**frame-number**.jpg
 - `--dump-blured`  write each blured frame to a file named **output_file**-blured-**frame-number**.jpg
 
+#### Example:
+`./videoHideFaces ./video/F01.mp4 out/F01.mp4 --dump-input --dump-blured`
+
 ## Flow explained
 
 ``` mermaid
@@ -57,7 +60,7 @@ note over VideoWriter: Encode Video
 - x264 - libx264 encoder library, submodule
 - assets - face detection DNNs
 - video - video sources
-- out - example results of the program
+- out - execution artifacts
 - cmake - cmake routines required for build
 
 ### files
