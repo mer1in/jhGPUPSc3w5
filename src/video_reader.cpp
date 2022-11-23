@@ -48,7 +48,7 @@ VideoReader::VideoReader(std::string fileName) {
     if (!(pkt = av_packet_alloc()))
         err("Couldn't allocate packet");
 
-    sws_ctx = sws_getContext(decCtx->width, decCtx->height, decCtx->pix_fmt, decCtx->width,
+    swsCtx = sws_getContext(decCtx->width, decCtx->height, decCtx->pix_fmt, decCtx->width,
          decCtx->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
 
 }
@@ -71,7 +71,7 @@ AVFrame* VideoReader::nextFrame()
             err("Error during decoding");
         }
         
-        int sts = sws_scale(sws_ctx,                //struct SwsContext* c,
+        int sts = sws_scale(swsCtx,                //struct SwsContext* c,
             frame->data,            //const uint8_t* const srcSlice[],
             frame->linesize,        //const int srcStride[],
             0,                      //int srcSliceY, 
