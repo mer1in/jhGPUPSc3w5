@@ -25,7 +25,7 @@ Execution was tested on [the machine provided in the laboratory](https://www.cou
 
 `./videoHideFaces <input_file> <output_file> [--dump-input] [--dump-blured]`
 - `input_file` video file to be processed, required
-- `output_file`    name of a file to write results to, required\n"
+- `output_file`    name of a file to write results to, required
 - `--dump-input`   write each input frame to a file named **output_file**-input-**frame-number**.jpg
 - `--dump-blured`  write each blured frame to a file named **output_file**-blured-**frame-number**.jpg
 
